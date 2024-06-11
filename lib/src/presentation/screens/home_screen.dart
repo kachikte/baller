@@ -20,6 +20,10 @@ class HomeScreen extends ConsumerWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    navigateBack() {
+      Navigator.of(context).pop();
+    }
+    
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SizedBox(
@@ -32,7 +36,12 @@ class HomeScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  AppBanner(),
+                  Row(
+                    children: [
+                      GestureDetector(onTap: navigateBack, child: Icon(Icons.arrow_back_ios_rounded, color: AppColors.appBlack,)),
+                      AppBanner(),
+                    ],
+                  ),
                   const SizedBox(
                     height: 20,
                   ),

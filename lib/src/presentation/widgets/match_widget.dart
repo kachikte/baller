@@ -46,6 +46,8 @@ class MatchWidget extends StatelessWidget {
               ],
             ),
             AppButton(
+              buttonText: '',
+              buttonColor: AppColors.appWhite,
                 pressedFunction: () =>
                     Navigator.pushNamed(
                         context, AppRoutes.matchDetailScreen, arguments: singleMatchModel),
