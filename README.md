@@ -24,3 +24,10 @@ Run the following commands to start the application
 - flutter clean
 - flutter pub get
 - flutter run
+
+The project has been updated to contain the following:
+
+- PIN setup
+- PIN screen
+- Signin screen
+- Dashboard screen (The view all on the dash board screen navigates to the match listing screen)
