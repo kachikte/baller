@@ -3,3 +3,7 @@ export 'app_button.dart';
 export 'app_util_widgets.dart';
 export 'match_widget.dart';
 export 'app_input.dart';
+export 'explore_widget.dart';
+export 'title_row_widget.dart';
+export 'featured_fields_widget.dart';
+export 'fields_widget.dart';

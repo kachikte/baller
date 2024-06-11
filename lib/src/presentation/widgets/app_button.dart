@@ -1,4 +1,3 @@
-import 'package:baller/src/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
@@ -7,9 +6,10 @@ class AppButton extends StatelessWidget {
   final Color? textColor;
   VoidCallback pressedFunction;
   final Widget buttonIcon;
+  final Widget suffixButtonIcon;
   final String buttonText;
 
-  AppButton({super.key, required this.pressedFunction, this.buttonIcon = const SizedBox(), required this.buttonColor, required this.buttonText, this.textColor = Colors.black});
+  AppButton({super.key, required this.pressedFunction, this.buttonIcon = const SizedBox(), this.suffixButtonIcon = const SizedBox(), required this.buttonColor, required this.buttonText, this.textColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,8 @@ class AppButton extends StatelessWidget {
             buttonIcon,
             const SizedBox(width: 10,),
             Text(buttonText, style: TextStyle(color: textColor),),
+            const SizedBox(width: 10,),
+            suffixButtonIcon
           ],
         ),
       ),

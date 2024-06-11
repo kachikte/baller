@@ -8,6 +8,8 @@ class AppRoutes {
   static const matchDetailScreen = "/match-detail-screen";
   static const forgotPasswordScreen = "/forgot-password-screen";
   static const pinSetupScreen = "/pin-setup-screen";
+  static const dashboardScreen = "/dashboard-screen";
+  static const landingScreen = "/landing-screen";
 
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -24,6 +26,12 @@ class AppRoutes {
         break;
       case pinSetupScreen:
         materialPageRoute =  MaterialPageRoute(builder: (_) => const PinSetupScreen());
+        break;
+      case dashboardScreen:
+        materialPageRoute =  MaterialPageRoute(builder: (_) => const DashboardScreen());
+        break;
+      case landingScreen:
+        materialPageRoute =  MaterialPageRoute(builder: (_) => const LandingScreen());
         break;
       case matchDetailScreen:
         materialPageRoute = MaterialPageRoute(builder: (_) {
