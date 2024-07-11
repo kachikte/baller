@@ -1,4 +1,4 @@
-import 'package:baller/src/presentation/screens/sign_in_screen.dart';
+import 'package:baller/src/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:baller/src/config/app_routes.dart';
@@ -14,10 +14,8 @@ void main() async {
 }
 
 class MyApp extends ConsumerWidget {
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
@@ -25,7 +23,7 @@ class MyApp extends ConsumerWidget {
       theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),
       themeMode: AppTheme.setThemeMode(isLight: true),
-      home: const SignInScreen(),
+      home: const SafeArea(child: ExploreScreen()),
       onGenerateRoute: AppRoutes.generateRoute,
     );
   }
