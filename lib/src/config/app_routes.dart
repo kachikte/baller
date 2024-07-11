@@ -3,6 +3,7 @@ import 'package:baller/src/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
+  static const exploreScreen = "/explore-screen";
   static const signInScreen = "/sign-in-screen";
   static const homeScreen = "/home-screen";
   static const matchDetailScreen = "/match-detail-screen";
@@ -16,6 +17,8 @@ class AppRoutes {
     late MaterialPageRoute materialPageRoute;
 
     switch(routeSettings.name) {
+      case exploreScreen:
+        materialPageRoute = MaterialPageRoute(builder: (_) => const ExploreScreen());
       case signInScreen:
         materialPageRoute = MaterialPageRoute(builder: (_) => const SignInScreen());
       case homeScreen:

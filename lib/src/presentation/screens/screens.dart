@@ -6,3 +6,4 @@ export 'sign_in_screen.dart';
 export 'pin_setup_screen.dart';
 export 'dashboard_screen.dart';
 export 'landing_screen.dart';
+export 'explore_screen.dart';
