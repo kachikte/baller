@@ -7,8 +7,11 @@ class AppColors {
   static Color primaryBackgroundColor = Colors.grey;
   static Color appBlack = Colors.black;
   static Color appWhite = Colors.white;
-  static Color appRed = Colors.red;
-  static Color appYellow = Colors.yellow;
+  static Color appRed = const Color(0xFFF04438);
+  static Color appYellow = const Color(0xFFF79009);
+  static Color appBlue = const Color(0xFF2E90FA);
+  static Color appTransparent = Colors.transparent;
+
   static Color appGreen = const Color(0xFF16B364);
   static Color appOrange = const Color(0xFFEF6820);
 

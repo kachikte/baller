@@ -2,26 +2,31 @@ import 'dart:developer';
 
 import 'package:baller/src/config/app_images.dart';
 import 'package:baller/src/config/app_routes.dart';
+import 'package:baller/src/domain/dto/dto.dart';
+import 'package:baller/src/domain/models/models.dart';
+import 'package:baller/src/presentation/providers/providers.dart';
 import 'package:baller/src/presentation/widgets/app_button.dart';
 import 'package:baller/src/presentation/widgets/app_input.dart';
+import 'package:baller/src/presentation/widgets/app_notification_pop.dart';
 import 'package:baller/src/utils/app_colors.dart';
 import 'package:baller/src/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreenState extends ConsumerState<SignInScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  TextEditingController usernameController = TextEditingController();
-
-  GoogleSignIn _googleSignIn = GoogleSignIn(
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
     ],
@@ -40,7 +45,6 @@ class _SignInScreenState extends State<SignInScreen> {
     _googleSignIn.signInSilently();
   }
 
-
   Future<void> _handleSignIn() async {
     try {
       await _googleSignIn.signIn();
@@ -49,14 +53,42 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  Future<void> signIn() async {
-    Navigator.pushNamed(
-        context, AppRoutes.landingScreen);
+  Future<void> signIn(data) async {
+    ref.read(notificationPopProvider.notifier).state = false;
+    ref.read(inputErrorProvider.notifier).state = false;
+    ref.read(buttonProvider.notifier).state = false;
+    // Navigator.pushNamed(context, AppRoutes.landingScreen);
+    ref.read(loginProvider(data).future).then((value) {
+      if (value.isError) {
+        ref.read(notificationPopProvider.notifier).state = true;
+        ref.read(inputErrorProvider.notifier).state = true;
+        log('This is the signed in data error - $value}');
+        ref.read(buttonProvider.notifier).state = true;
+      } else {
+        log('This is the signed in data - $value}');
+        LoginModel loginModel = value.data;
+        UserModel userModel = UserModel(
+            firstName: loginModel.firstName,
+            lastName: loginModel.lastName,
+            email: loginModel.email);
+        ref.read(userProvider.notifier).setUser(userModel);
+        ref.read(buttonProvider.notifier).state = true;
+        Navigator.pushNamed(context, AppRoutes.pinSigninScreen);
+      }
+    }).catchError((err) {
+      log('This is the error of the sign in - $err');
+      ref.read(notificationPopProvider.notifier).state = true;
+      ref.read(inputErrorProvider.notifier).state = true;
+      ref.read(buttonProvider.notifier).state = true;
+    });
+  }
+
+  signUp() async {
+    Navigator.pushNamed(context, AppRoutes.signUpTypeScreen);
   }
 
   Future<void> forgotPassword() async {
-    Navigator.pushNamed(
-        context, AppRoutes.forgotPasswordScreen);
+    Navigator.pushNamed(context, AppRoutes.forgotPasswordScreen);
   }
 
   Future<void> _handleSignOut() async {
@@ -65,104 +97,279 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+
+    final pinObscure = ref.watch(pinInputCompleteProvider);
+    final buttonActive = ref.watch(buttonProvider);
+    final inputError = ref.watch(inputErrorProvider);
+    final notification = ref.watch(notificationPopProvider);
+    final passwordCreated = ref.watch(passwordCreatedProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: AppColors.appWhite,
-        leading: BackButton(color: AppColors.appBlack,),
+        leading: BackButton(
+          color: AppColors.appBlack,
+        ),
         title: Text(
-          "Sign In", style: TextStyle(color: AppColors.appBlack),
+          "Sign In",
+          style: TextStyle(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: height * .02,),
-              Text(
-                "Welcome back", style: TextStyle(color: AppColors.appBlack, fontWeight: FontWeight.w500, fontSize: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            inputError && notification
+                ? AppNotificationPop(
+                    width: width,
+                    height: height * .06,
+                    backgroundColor: AppColors.appRed,
+                    prefixIcon: Icon(
+                      Icons.info_outline,
+                      color: AppColors.appWhite,
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        ref.read(notificationPopProvider.notifier).state =
+                            false;
+                      },
+                      icon: const Icon(Icons.close),
+                      color: AppColors.appWhite,
+                    ),
+                    text: 'Wrong email or password',
+                  )
+                : (passwordCreated
+                    ? AppNotificationPop(
+                        width: width,
+                        height: height * .06,
+                        backgroundColor: AppColors.appGreen,
+                        prefixIcon: Image.asset(AppImages.checkCircle),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            ref.read(passwordCreatedProvider.notifier).state =
+                                false;
+                          },
+                          icon: const Icon(Icons.close),
+                          color: AppColors.appWhite,
+                        ),
+                        text: 'Password changed successfully! Wasn’t you?',
+                      )
+                    : const SizedBox()),
+            SizedBox(
+              height: height * .035,
+            ),
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Image.asset(AppImages.logo)),
+            SizedBox(
+              height: height * .015,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                "Welcome back",
+                style: TextStyle(
+                    color: AppColors.appBlack,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20),
               ),
-              const SizedBox(height: 5,),
-              RichText(text: TextSpan(
-                text: "Don’t have an account? ",
-                style: TextStyle(color: AppColors.appBlack),
+            ),
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  'Enter details below',
+                  style: TextStyle(color: AppColors.appBlack.withOpacity(.4)),
+                )),
+            SizedBox(
+              height: height * .025,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextSpan(
-                    text: "Sign up",
-                    style: TextStyle(
-                      color: AppColors.appGreen
-                    )
+                  SizedBox(
+                    height: height * .06,
+                    width: width * .3,
+                    child: AppButton(
+                        pressedFunction: _handleSignIn,
+                        buttonIcon: SvgPicture.asset(
+                          AppImages.google,
+                          height: height * .04,
+                          width: width * .7,
+                        ),
+                        buttonColor: AppColors.appWhite,
+                        borderColor: AppColors.appBlack,
+                        buttonText: ''),
                   ),
-                ]
-              )),
-              SizedBox(height: height * .02,),
-              AppButton(pressedFunction: _handleSignIn, buttonIcon: SvgPicture.asset(AppImages.google), buttonColor: AppColors.appWhite, buttonText: 'Sign in with Google'),
-              SizedBox(height: height * .02,),
-              AppButton(pressedFunction: _handleSignIn, buttonIcon: SvgPicture.asset(AppImages.facebook), buttonColor: AppColors.primaryColorDark, buttonText: 'Sign in with Facebook'),
-              SizedBox(height: height * .02,),
-              AppButton(pressedFunction: _handleSignIn, buttonIcon: SvgPicture.asset(AppImages.apple), buttonColor: AppColors.appBlack, textColor: AppColors.appWhite, buttonText: 'Sign in with iCloud'),
-              SizedBox(height: height * .02,),
-              Row(
-                children: [
-                  SizedBox(width: 135, child: Divider(color: AppColors.appBlack, height: 2, thickness: .2,)),
-                  SizedBox(width: width * .02,),
-                  const Text('or sign in with'),
-                  SizedBox(width: width * .02,),
-                  SizedBox(width: 135, child: Divider(color: AppColors.appBlack, height: 2, thickness: .2,)),
+                  SizedBox(
+                    height: height * .06,
+                    width: width * .3,
+                    child: AppButton(
+                        pressedFunction: _handleSignIn,
+                        buttonIcon: SvgPicture.asset(
+                          AppImages.facebook,
+                          height: height * .04,
+                          width: width * .7,
+                        ),
+                        buttonColor: AppColors.primaryColorDark,
+                        buttonText: ''),
+                  ),
+                  SizedBox(
+                    height: height * .06,
+                    width: width * .3,
+                    child: AppButton(
+                        pressedFunction: _handleSignIn,
+                        buttonIcon: SvgPicture.asset(
+                          AppImages.apple,
+                          height: height * .04,
+                          width: width * .7,
+                        ),
+                        buttonColor: AppColors.appBlack,
+                        textColor: AppColors.appWhite,
+                        buttonText: ''),
+                  ),
                 ],
               ),
-              SizedBox(height: height * .02,),
-              RichText(text: TextSpan(
-                  text: "Username ",
-                  style: TextStyle(color: AppColors.appBlack),
-                  children: [
-                    TextSpan(
-                        text: "*",
-                        style: TextStyle(
-                            color: AppColors.appRed
-                        )
-                    ),
-                  ]
-              )),
-              SizedBox(height: height * .01,),
-              AppInput(
-                icon: Icon(Icons.person_outline, color: AppColors.appBlack.withOpacity(.5),),
-                  textEditingController: usernameController,
-                  hintText: "Username",
-                  errorText: "Please enter your username"),
-              SizedBox(height: height * .02,),
-              RichText(text: TextSpan(
-                  text: "Password ",
-                  style: TextStyle(color: AppColors.appBlack),
-                  children: [
-                    TextSpan(
-                        text: "*",
-                        style: TextStyle(
-                            color: AppColors.appRed
-                        )
-                    ),
-                  ]
-              )),
-              SizedBox(height: height * .01,),
-              AppInput(
+            ),
+            SizedBox(
+              height: height * .025,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                      width: width * .3,
+                      child: Divider(
+                        color: AppColors.appBlack,
+                        height: 2,
+                        thickness: .2,
+                      )),
+                  SizedBox(
+                    width: width * .02,
+                  ),
+                  const Text('or sign in with'),
+                  SizedBox(
+                    width: width * .02,
+                  ),
+                  SizedBox(
+                      width: width * .3,
+                      child: Divider(
+                        color: AppColors.appBlack,
+                        height: 2,
+                        thickness: .2,
+                      )),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: height * .025,
+            ),
+            AppInput(
+                textEditingController: emailController,
+                suffixIcon: inputError
+                    ? Icon(
+                        Icons.info_outline,
+                        color: AppColors.appRed,
+                      )
+                    : const SizedBox(),
+                isError: inputError,
+                icon: Image.asset(AppImages.mailIconPng),
+                hintText: "Enter your email address",
+                errorText: "Please enter your username",
+                width: width,
+                label: "Email Address",
+                height: height),
+            AppInput(
+                textEditingController: passwordController,
+                suffixIcon: inputError
+                    ? Icon(
+                        Icons.info_outline,
+                        color: AppColors.appRed,
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          log('trying to change the obscure = $pinObscure');
+                          ref.read(pinInputCompleteProvider.notifier).state =
+                              !pinObscure;
+                        },
+                        child: pinObscure
+                            ? const Icon(Icons.remove_red_eye)
+                            : const Icon(Icons.remove_red_eye_outlined),
+                      ),
+                isError: inputError,
                 type: Constants.passwordFieldType,
-                  icon: Icon(Icons.lock_open, color: AppColors.appBlack.withOpacity(.5),),
-                  textEditingController: usernameController,
-                  hintText: "Password",
-                  errorText: "Please enter your password"),
-              SizedBox(height: height * .03,),
-              GestureDetector(onTap: forgotPassword, child: Text('Forgot password?', style: TextStyle(color: AppColors.appGreen),)),
-              SizedBox(height: height * .06,),
-              AppButton(pressedFunction: signIn, buttonColor: AppColors.appGreen, buttonText: 'Sign in', textColor: AppColors.appWhite,),
-            ],
-          ),
+                icon: Image.asset(AppImages.lockIconPng),
+                hintText: "Enter your password",
+                errorText: "Please enter your password",
+                width: width,
+                label: "Password",
+                height: height),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                      onTap: forgotPassword,
+                      child: Text(
+                        'Forgot Your Password?',
+                        style: TextStyle(color: AppColors.appBlack),
+                      )),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: height * .06,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: AppButton(
+                pressedFunction: (emailController.text.isNotEmpty &&
+                            passwordController.text.isNotEmpty) &&
+                        buttonActive
+                    ? () => signIn(
+                        LoginDto(emailController.text, passwordController.text))
+                    : () {},
+                buttonColor: (emailController.text.isNotEmpty &&
+                            passwordController.text.isNotEmpty) &&
+                        buttonActive
+                    ? AppColors.appGreen
+                    : AppColors.primaryBackgroundColor.withOpacity(.3),
+                buttonText: 'Sign in',
+                buttonRadius: 10,
+                textColor: (emailController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty)
+                    ? AppColors.appWhite
+                    : AppColors.primaryBackgroundColor,
+              ),
+            ),
+            SizedBox(
+              height: height * .015,
+            ),
+            GestureDetector(
+              onTap: () => signUp(),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: RichText(
+                    text: TextSpan(
+                        text: "Don’t have an account? ",
+                        style: TextStyle(color: AppColors.appBlack),
+                        children: [
+                      TextSpan(
+                          text: "Create an account!",
+                          style: TextStyle(color: AppColors.appGreen)),
+                    ])),
+              ),
+            ),
+          ],
         ),
       ),
     );

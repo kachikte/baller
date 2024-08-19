@@ -5,7 +5,7 @@ class AppDecorations {
 
   static Size screenSize = WidgetsBinding.instance.window.physicalSize;
 
-  static double borderRadiusCircular = screenSize.width * 0.05;
+  static double borderRadiusCircular = screenSize.width * 0.01;
 
   static OutlineInputBorder borderOutline = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(borderRadiusCircular)),
@@ -15,7 +15,7 @@ class AppDecorations {
   static OutlineInputBorder borderError = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(borderRadiusCircular)),
       borderSide: BorderSide(
-          color: AppColors.primaryColor, width: 0.7, style: BorderStyle.solid));
+          color: AppColors.appRed, width: 0.7, style: BorderStyle.solid));
 
   static focusedBorder({required double width}) {
     return OutlineInputBorder(

@@ -1,5 +1,5 @@
-import 'package:baller/src/data/source/api_url.dart';
-import 'package:baller/src/data/source/base_dio.dart';
+import 'package:baller/src/data/source/config/api_url.dart';
+import 'package:baller/src/data/source/config/base_dio.dart';
 
 class MatchesRemoteSource {
 

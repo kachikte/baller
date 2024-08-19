@@ -82,6 +82,7 @@ flutter:
     - assets/images/logo/
     - assets/images/svgs/
     - assets/images/png/
+    - assets/images/jpg/
   #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -112,7 +113,7 @@ flutter:
 
 
 flutter_native_splash:
-  color: "#8A8AFF"
+  color: "#FFFFFF"
   #background_image: "assets/background.png"
 
   image: assets/images/logo/logo.png
