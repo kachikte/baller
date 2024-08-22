@@ -16,8 +16,8 @@ class FieldsWidget extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: width * .03),
           // padding: EdgeInsets.symmetric(
           //     vertical: height * .02, horizontal: width * .03),
-          height: height * .28,
-          width: width * .9,
+          height: height * .29,
+          width: width * .8,
           decoration: BoxDecoration(
               border: Border.all(
                   color: AppColors.appBlack.withOpacity(.2), width: 1),
@@ -31,7 +31,7 @@ class FieldsWidget extends StatelessWidget {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12)),
                 child: Image.asset(
-                  AppImages.footballField,
+                  AppImages.basketBallCourtPng,
                   width: width,
                   height: height * .12,
                   fit: BoxFit.cover,
@@ -95,7 +95,7 @@ class FieldsWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: SizedBox(
-                  width: width * .7,
+                  width: width * .47,
                   child: const Text(
                     'Cubic Pythagoras Multiservices Limited',
                     overflow: TextOverflow.ellipsis,
@@ -126,18 +126,34 @@ class FieldsWidget extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: SizedBox(
-                  width: width * .7,
-                  child: const Text(
-                    'From ₦1,000',
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w200,
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                width: width * .8,
+                child: Row(
+                  children: [
+                    const Text(
+                      'From ₦1,000',
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                      ),
                     ),
-                  ),
+                    const Expanded(child: SizedBox()),
+                    Icon(
+                      Icons.star,
+                      color: AppColors.appYellow,
+                    ),
+                    const Text(
+                      '3.5',
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               // Row(
@@ -198,10 +214,10 @@ class FieldsWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 10,
-          left: 15,
+          top: 7,
+          left: 20,
           child: SizedBox(
-            width: width * .85,
+            width: width * .75,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -244,12 +260,8 @@ class FieldsWidget extends StatelessWidget {
                       color: AppColors.appWhite,
                       borderRadius: const BorderRadius.all(Radius.circular(5))),
                   padding: const EdgeInsets.all(2),
-                  child: const Center(
-                    child: Icon(
-                      Icons.book,
-                      // color: AppColors.appOrange,
-                      size: 25,
-                    ),
+                  child: Center(
+                    child: Image.asset(AppImages.bookmarkIconPng),
                   ),
                 ),
               ],

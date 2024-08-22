@@ -8,4 +8,7 @@ class Constants {
 
   static String revDets = 'Details';
   static String reviews = 'Reviews';
+
+  static String upcomingBookings = 'Upcoming';
+  static String completedBookings = 'Completed';
 }

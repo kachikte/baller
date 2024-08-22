@@ -18,10 +18,19 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
   }
 
   List games = [
-    {'name': 'Football', 'image': AppImages.footballSvg},
-    {'name': 'BasketBall', 'image': AppImages.basketballSvg},
-    {'name': 'Track', 'image': AppImages.runSvg},
-    {'name': 'Volleyball', 'image': AppImages.volleyballSvg},
+    {'name': 'Football', 'image': AppImages.footBallPng},
+    {'name': 'BasketBall', 'image': AppImages.basketBallPng},
+    {'name': 'Track', 'image': AppImages.runPng},
+    {'name': 'Volleyball', 'image': AppImages.volleyBallPng},
+    {'name': 'Handball', 'image': AppImages.handballPng},
+    {'name': 'Wrestling', 'image': AppImages.wrestlingPng},
+    {'name': 'E-Sports', 'image': AppImages.gamePadPng},
+    {'name': 'Table Tennis', 'image': AppImages.tableTenisPng},
+    {'name': 'Boxing', 'image': AppImages.boxingPng},
+    {'name': 'Gymnastics', 'image': AppImages.gymnasticsPng},
+    {'name': 'Polo', 'image': AppImages.poloPng},
+    {'name': 'Badminton', 'image': AppImages.badmintonPng},
+    {'name': 'Taekwondo', 'image': AppImages.taekwondoPng},
   ];
 
   TextEditingController searchController = TextEditingController();
@@ -45,7 +54,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
           context: context,
           builder: (ctx) {
             return Container(
-              height: height * .8,
+              height: height * .9,
               width: width,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -154,11 +163,11 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                                           .withOpacity(.2),
                                       width: 1),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(40))),
+                                      Radius.circular(10))),
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(games[index]['image']),
+                                    Image.asset(games[index]['image']),
                                     const SizedBox(
                                       width: 10,
                                     ),
@@ -290,6 +299,13 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                       height: 3,
                     ),
                     Container(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          'Price range',
+                          style: TextStyle(
+                              color: AppColors.appBlack.withOpacity(.5)),
+                        )),
+                    Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 20),
                       child: Row(
@@ -299,8 +315,9 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                             width: width * .45,
                             child: AppButton(
                                 buttonRadius: 10,
-                                borderColor: AppColors.appBlack,
+                                borderColor: AppColors.appBlack.withOpacity(.5),
                                 pressedFunction: () {},
+                                textColor: AppColors.appBlack.withOpacity(.5),
                                 buttonColor: AppColors.appWhite,
                                 buttonText: 'Min price'),
                           ),
@@ -308,8 +325,9 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                             width: width * .45,
                             child: AppButton(
                                 buttonRadius: 10,
-                                borderColor: AppColors.appBlack,
+                                borderColor: AppColors.appBlack.withOpacity(.5),
                                 pressedFunction: () {},
+                                textColor: AppColors.appBlack.withOpacity(.5),
                                 buttonColor: AppColors.appWhite,
                                 buttonText: 'Max price'),
                           ),
@@ -417,20 +435,19 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                     width: width * .8,
                     child: AppInput(
                         textEditingController: searchController,
-                        suffixIcon: SizedBox(
-                          width: 10,
-                          height: 10,
+                        suffixIcon: Container(
+                          padding: const EdgeInsets.all(15),
                           child: SvgPicture.asset(
                             AppImages.gpsSvg,
                             fit: BoxFit.contain,
-                            width: 5,
-                            height: 5,
                           ),
                         ),
-                        icon: Image.asset(AppImages.ballersSearch),
+                        icon: Image.asset(
+                          AppImages.ballersSearch,
+                        ),
                         hintText:
                             "Apo Resettlement Area Sapeyi Palace Crescent",
-                        errorText: "Please enter your username",
+                        errorText: "",
                         width: width * .8,
                         label: "",
                         height: height),
@@ -449,16 +466,16 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                         child: SvgPicture.asset(
                           AppImages.filterSvg,
                           fit: BoxFit.contain,
-                          width: 20,
-                          height: 20,
+                          width: 15,
+                          height: 15,
                         ),
                       ),
                     ),
                   )
                 ],
               ),
-
-              SizedBox(
+              Container(
+                padding: const EdgeInsets.only(left: 10),
                 height: height * .04,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
@@ -476,7 +493,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                               width: 1)),
                       child: Row(
                         children: [
-                          SvgPicture.asset(games[index]['image']),
+                          Image.asset(games[index]['image']),
                           const SizedBox(
                             width: 10,
                           ),
@@ -511,7 +528,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                           Text(
                             'Featured Arenas',
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
+                                fontWeight: FontWeight.w700, fontSize: 16),
                           ),
                           Icon(Icons.close)
                         ],
@@ -535,7 +552,6 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
               const SizedBox(
                 height: 20,
               ),
-
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 height: height * .05,
@@ -545,7 +561,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                     const Text(
                       '8 Available Arenas',
                       style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                     ),
                     Container(
                       // width: width * .4,
@@ -561,10 +577,8 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                               width: 1)),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            AppImages.ballersSearch,
-                            height: 20,
-                            width: 20,
+                          Image.asset(
+                            AppImages.filterPngPng,
                           ),
                           const SizedBox(
                             width: 10,
@@ -596,19 +610,6 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                   },
                 ),
               ),
-              // Expanded(
-              //   child: ListView.separated(
-              //     itemBuilder: (ctx, index) {
-              //       return const FieldsWidget();
-              //     },
-              //     itemCount: 1,
-              //     separatorBuilder: (context, index) {
-              //       return const SizedBox(
-              //         height: 15,
-              //       );
-              //     },
-              //   ),
-              // ),
             ],
           ),
         ),

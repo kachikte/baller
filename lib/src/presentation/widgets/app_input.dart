@@ -21,7 +21,7 @@ class AppInput extends ConsumerWidget {
 
   AppInput(
       {required this.textEditingController,
-       this.textInputType = TextInputType.text,
+      this.textInputType = TextInputType.text,
       required this.hintText,
       required this.errorText,
       this.enabled = true,

@@ -1,11 +1,11 @@
 import 'package:baller/src/config/app_images.dart';
 import 'package:baller/src/presentation/providers/home_provider.dart';
 import 'package:baller/src/presentation/screens/arena_screen.dart';
+import 'package:baller/src/presentation/screens/booking_home_screen.dart';
 import 'package:baller/src/presentation/screens/dashboard_screen.dart';
 import 'package:baller/src/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LandingScreen extends ConsumerStatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _LandingScreenState extends ConsumerState<LandingScreen> {
 
   static const List screens = [
     DashboardScreen(),
-    DashboardScreen(),
+    BookingHomeScreen(),
     ArenaScreen(),
     DashboardScreen(),
   ];
@@ -35,22 +35,39 @@ class _LandingScreenState extends ConsumerState<LandingScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_filled,
-                color: AppColors.appBlack,
-              ),
-              label: 'Dashboard'),
+            icon: _buildIcon(AppImages.dashboardPng, homeIndex == 0),
+            label: 'Dashboard',
+          ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppImages.explore), label: 'Bookings'),
+            icon: _buildIcon(AppImages.bookingsPng, homeIndex == 1),
+            label: 'Bookings',
+          ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppImages.favorites), label: 'Arenas'),
+            icon: _buildIcon(AppImages.arenaPng, homeIndex == 2),
+            label: 'Arenas',
+          ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppImages.bookings), label: 'Favorites'),
+            icon: _buildIcon(AppImages.favoriteTabPng, homeIndex == 3),
+            label: 'Favorites',
+          ),
         ],
         currentIndex: homeIndex,
         onTap: setIndex,
-        selectedItemColor: AppColors.primaryColor,
+        selectedItemColor: AppColors.appGreen,
+        unselectedItemColor: AppColors.primaryBackgroundColor,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
       ),
+    );
+  }
+
+  Widget _buildIcon(String asset, bool isSelected) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(
+        isSelected ? AppColors.appGreen : AppColors.primaryBackgroundColor,
+        BlendMode.srcIn,
+      ),
+      child: Image.asset(asset),
     );
   }
 }

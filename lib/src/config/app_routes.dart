@@ -28,6 +28,11 @@ class AppRoutes {
   static const privacySettingsScreen = "/privacy-settings-screen";
   static const arenaScreen = '/arena-screen';
   static const arenaDetailsScreen = '/arena-details-screen';
+  static const bookingScreen = '/booking-screen';
+  static const bookingHomeScreen = '/booking-home-screen';
+  static const bookingReviewScreen = '/booking-review-screen';
+  static const paymentScreen = '/payment-screen';
+  static const transactionSuccessfulScreen = '/transaction-successful-screen';
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     late MaterialPageRoute materialPageRoute;
@@ -113,6 +118,26 @@ class AppRoutes {
       case arenaDetailsScreen:
         materialPageRoute =
             MaterialPageRoute(builder: (_) => const ArenaDetailsScreen());
+        break;
+      case bookingScreen:
+        materialPageRoute =
+            MaterialPageRoute(builder: (_) => const BookingsScreen());
+        break;
+      case bookingHomeScreen:
+        materialPageRoute =
+            MaterialPageRoute(builder: (_) => const BookingHomeScreen());
+        break;
+      case bookingReviewScreen:
+        materialPageRoute =
+            MaterialPageRoute(builder: (_) => const BookingReviewScreen());
+        break;
+      case paymentScreen:
+        materialPageRoute =
+            MaterialPageRoute(builder: (_) => const PaymentScreen());
+        break;
+      case transactionSuccessfulScreen:
+        materialPageRoute = MaterialPageRoute(
+            builder: (_) => const TransactionSuccessfulScreen());
         break;
       case matchDetailScreen:
         materialPageRoute = MaterialPageRoute(

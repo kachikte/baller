@@ -17,6 +17,8 @@ class AppImages {
   static const funnelFilterSvg = "assets/images/svgs/funnel_filter.svg";
 
   //pngs
+  static const basketBallCourtPng =
+      "assets/images/png/ballers_basketball_court.png";
   static const profileImagePng = "assets/images/png/profile_image.png";
   static const mailIconPng = "assets/images/png/mail_icon.png";
   static const lockIconPng = "assets/images/png/lock_icon.png";
@@ -47,6 +49,41 @@ class AppImages {
   static const ballersLogout = "assets/images/png/ballers_logout.png";
   static const matchDetailProfile =
       "assets/images/png/match_detail_profile.png";
+  static const bookmarkIconPng = "assets/images/png/bookmark_icon.png";
+  static const arenaPng = "assets/images/png/arena.png";
+  static const favoriteTabPng = "assets/images/png/favorite_tab.png";
+  static const filterPngPng = "assets/images/png/filter_png.png";
+
+  static const dashboardPng = "assets/images/png/dashboard.png";
+  static const bookingsPng = "assets/images/png/bookings.png";
+  static const moonWhitePng = "assets/images/png/moon_white.png";
+  static const cautionPng = "assets/images/png/caution.png";
+  static const sharePng = "assets/images/png/share.png";
+  static const clockPng = "assets/images/png/clock.png";
+  static const calendarPng = "assets/images/png/calendar.png";
+  static const tilesPng = "assets/images/png/tiles.png";
+  static const multiplePersonPng = "assets/images/png/multiple_profile.png";
+  static const stackPng = "assets/images/png/stack.png";
+  static const transferPng = "assets/images/png/transfer.png";
+  static const debitPng = "assets/images/png/debit.png";
+  static const copyPng = "assets/images/png/copy.png";
+  static const transactionSuccessfulPng =
+      "assets/images/png/transaction_successful.png";
+
+  //png sport logos
+  static const badmintonPng = "assets/images/png/badminton.png";
+  static const basketBallPng = "assets/images/png/basketball.png";
+  static const boxingPng = "assets/images/png/boxing.png";
+  static const footBallPng = "assets/images/png/football.png";
+  static const gamePadPng = "assets/images/png/gamepad.png";
+  static const gymnasticsPng = "assets/images/png/gymnastics.png";
+  static const handballPng = "assets/images/png/handball.png";
+  static const poloPng = "assets/images/png/polo.png";
+  static const runPng = "assets/images/png/run.png";
+  static const tableTenisPng = "assets/images/png/tabletenis.png";
+  static const taekwondoPng = "assets/images/png/taekwondo.png";
+  static const volleyBallPng = "assets/images/png/volleyball.png";
+  static const wrestlingPng = "assets/images/png/wrestling.png";
 
   //jpg
   static const basketBallCourtJpg = "assets/images/jpg/Basketball.jpg";

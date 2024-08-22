@@ -12,8 +12,6 @@ class FullFeaturedFieldsWidget extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: width * .03),
-      // padding:
-      //     EdgeInsets.symmetric(vertical: height * .02, horizontal: width * .03),
       height: height * .15,
       width: width * .84,
       decoration: BoxDecoration(
@@ -22,10 +20,9 @@ class FullFeaturedFieldsWidget extends StatelessWidget {
               width: 1),
           borderRadius: const BorderRadius.all(Radius.circular(12))),
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ClipRRect(
-              child: Image.asset(AppImages.footballField,
+              child: Image.asset(AppImages.basketBallCourtPng,
                   width: width * .25, height: height * .15, fit: BoxFit.fill)),
           const SizedBox(
             width: 10,
@@ -44,33 +41,34 @@ class FullFeaturedFieldsWidget extends StatelessWidget {
                       fontSize: 12),
                 ),
                 SizedBox(
-                  width: width * .3,
+                  width: width * .4,
                   child: const Text(
                     'Cubic Pythagoras Multiservices Limited',
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
-                    style: TextStyle(fontSize: 13),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
+                Text(
                   'Gwarinpa',
-                  style: TextStyle(fontSize: 12),
+                  style: TextStyle(
+                      fontSize: 14, color: AppColors.appBlack.withOpacity(.4)),
                 ),
                 RichText(
                     text: TextSpan(
                         text: "From ",
-                        style:
-                            TextStyle(color: AppColors.appBlack, fontSize: 12),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.appBlack.withOpacity(.4)),
                         children: [
                       TextSpan(
                           text: "₦1,000.00",
                           style: TextStyle(
-                            color: AppColors.appBlack,
-                            fontSize: 12,
-                          )),
+                              fontSize: 14,
+                              color: AppColors.appBlack.withOpacity(.4))),
                     ])),
               ],
             ),
@@ -82,12 +80,10 @@ class FullFeaturedFieldsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
+                Text(
                   'Football +2',
                   style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                  ),
+                      fontSize: 13, color: AppColors.appBlack.withOpacity(.4)),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -95,15 +91,17 @@ class FullFeaturedFieldsWidget extends StatelessWidget {
                     Icon(
                       Icons.star,
                       color: AppColors.appYellow,
-                      size: 12,
+                      size: 16,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
-                    const Text(
+                    Text(
                       '3.5',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: AppColors.appBlack.withOpacity(.4)),
                     ),
                   ],
                 )

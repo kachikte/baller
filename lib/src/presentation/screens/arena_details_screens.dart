@@ -1,12 +1,10 @@
 import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/providers/arena_provider.dart';
-import 'package:baller/src/presentation/providers/providers.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
 import 'package:baller/src/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ArenaDetailsScreen extends ConsumerStatefulWidget {
   const ArenaDetailsScreen({Key? key}) : super(key: key);
@@ -38,9 +36,6 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
-    final buttonActive = ref.watch(buttonProvider);
-    final inputError = ref.watch(inputErrorProvider);
-    final notification = ref.watch(notificationPopProvider);
     final reviewDetail = ref.watch(detailsReviewsProvider);
 
     showModalBottom() {
@@ -57,7 +52,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
           context: context,
           builder: (ctx) {
             return Container(
-              height: height * .5,
+              height: height * .42,
               width: width,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -67,9 +62,6 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
                     Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 10,
@@ -77,18 +69,20 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Review',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 15),
+                                    fontWeight: FontWeight.w700, fontSize: 17),
                               ),
                               Text(
                                 'Submit your review.',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 12),
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 13,
+                                    color: AppColors.appBlack.withOpacity(.5)),
                               )
                             ],
                           ),
@@ -119,42 +113,51 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                           color: AppColors.appYellow,
                           size: 30,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Icon(
                           Icons.star,
-                          color: AppColors.appYellow,
+                          color:
+                              AppColors.primaryBackgroundColor.withOpacity(.5),
                           size: 30,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Icon(
                           Icons.star,
-                          color: AppColors.appYellow,
+                          color:
+                              AppColors.primaryBackgroundColor.withOpacity(.5),
                           size: 30,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Icon(
                           Icons.star,
-                          color: AppColors.appYellow,
+                          color:
+                              AppColors.primaryBackgroundColor.withOpacity(.5),
                           size: 30,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Icon(
                           Icons.star,
-                          color: AppColors.appYellow,
+                          color:
+                              AppColors.primaryBackgroundColor.withOpacity(.5),
                           size: 30,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
-                        Text('1.0')
+                        Text(
+                          '1.0',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: AppColors.appBlack.withOpacity(.5)),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -177,6 +180,9 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                         minLines: 5,
                         maxLines: 7,
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Divider(
                       color: AppColors.appBlack.withOpacity((.2)),
@@ -205,63 +211,67 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
         child: Stack(
           children: [
             Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   height: height * .25,
                   decoration: BoxDecoration(
                     color: AppColors.primaryColor,
-                    // borderRadius: const BorderRadius.all(Radius.circular(12)),
                     image: const DecorationImage(
-                      image: AssetImage(AppImages.footballField),
+                      image: AssetImage(AppImages.basketBallCourtPng),
                       fit: BoxFit
                           .cover, // You can change this to BoxFit.contain, BoxFit.fill, etc.
                     ),
                   ),
                 ),
-                ListTile(
-                    leading: Image.asset(AppImages.matchDetailProfile),
-                    title: Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color:
-                              AppColors.primaryBackgroundColor.withOpacity(.5),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20))),
-                      child: const Center(
-                        child: Text(
-                          'Cubic Pythagoras Multiservices Limited',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ),
-                    ),
-                    subtitle: Text(
-                      'Estate Basketball Court',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                          color: AppColors.appBlack),
-                    ),
-                    trailing: const Text('3.5')),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  height: height * .05,
+                  padding: const EdgeInsets.all(10),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('0.5 mi away'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      CircleAvatar(
-                        radius: 5,
-                        backgroundColor:
-                            AppColors.primaryBackgroundColor.withOpacity(.5),
+                      Image.asset(
+                        AppImages.matchDetailProfile,
+                        width: 50,
+                        height: 50,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text('Gwarinpa, Nigeria')
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryBackgroundColor
+                                    .withOpacity(.5),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            child: const Center(
+                              child: Text(
+                                'Cubic Pythagoras Multiservices Limited',
+                                style: TextStyle(fontSize: 10),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Estate Basketball Court',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                                color: AppColors.appBlack),
+                          )
+                        ],
+                      ),
+                      const Expanded(child: SizedBox()),
+                      Icon(
+                        Icons.star,
+                        color: AppColors.appYellow,
+                        size: 14,
+                      ),
+                      const Text(
+                        '3.5',
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      )
                     ],
                   ),
                 ),
@@ -270,17 +280,50 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                   height: height * .05,
                   child: Row(
                     children: [
-                      SvgPicture.asset(AppImages.footballSvg),
-                      const Text(' Football'),
+                      Text(
+                        '0.5 mi away',
+                        style: TextStyle(
+                            color: AppColors.appBlack.withOpacity(.4)),
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(','),
+                      CircleAvatar(
+                        radius: 3,
+                        backgroundColor:
+                            AppColors.primaryBackgroundColor.withOpacity(.5),
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
-                      SvgPicture.asset(AppImages.footballSvg),
-                      const Text(' Basketball')
+                      Text('Gwarinpa, Nigeria',
+                          style: TextStyle(
+                              color: AppColors.appBlack.withOpacity(.4)))
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  height: height * .05,
+                  child: Row(
+                    children: [
+                      Image.asset(AppImages.footBallPng),
+                      Text(' Football',
+                          style: TextStyle(
+                              color: AppColors.appBlack.withOpacity(.4))),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(',',
+                          style: TextStyle(
+                              color: AppColors.appBlack.withOpacity(.4))),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset(AppImages.basketBallPng),
+                      Text(' Basketball',
+                          style: TextStyle(
+                              color: AppColors.appBlack.withOpacity(.4)))
                     ],
                   ),
                 ),
@@ -288,42 +331,19 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                   height: 10,
                 ),
                 Wrap(
-                  spacing: 20.0, // Space between widgets horizontally
+                  spacing: 5.0, // Space between widgets horizontally
                   runSpacing: 10.0, // Space between rows
                   children: List.generate(games.length, (index) {
-                    // bool containsProficiency =
-                    // skillProficienciesProv.contains(skillProficiencies[index]);
-
                     return IntrinsicWidth(
                       child: GestureDetector(
-                        // onTap: () {
-                        //   ref
-                        //       .read(skillProficienciesProvider.notifier)
-                        //       .update((state) {
-                        //     // Check if the item exists in the list
-                        //     if (containsProficiency) {
-                        //       // If it exists, remove it
-                        //       return state
-                        //           .where(
-                        //               (item) => item != skillProficiencies[index])
-                        //           .toList();
-                        //     } else {
-                        //       // If it doesn't exist, add it
-                        //       return [...state, skillProficiencies[index]];
-                        //     }
-                        //   });
-                        // },
                         child: Container(
                           margin: const EdgeInsets.only(
                             left: 10,
                           ),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 12.0, vertical: 8.0),
+                              horizontal: 10.0, vertical: 6.0),
                           decoration: BoxDecoration(
                               color: Colors.amber.withOpacity(.08),
-                              // color: containsProficiency
-                              //     ? AppColors.primaryDark
-                              //     : AppColors.appGrey.withOpacity(.5),
                               border: Border.all(
                                   color: AppColors.appTransparent, width: 1),
                               borderRadius:
@@ -332,11 +352,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                             child: Text(
                               games[index],
                               style: TextStyle(
-                                  color: AppColors.appBlack,
-                                  // color: containsProficiency
-                                  //     ? AppColors.appWhite
-                                  //     : AppColors.appBlack.withOpacity(.5),
-                                  fontSize: 13),
+                                  color: AppColors.appBlack, fontSize: 12),
                             ),
                           ),
                         ),
@@ -416,34 +432,51 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                     ? Container(
                         margin: const EdgeInsets.all(10),
                         height: height * .2,
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Overview',
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 17),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Text(
                               'Lorem ipsum dolor sit amet consectetur. Et placerat rhoncus vehicula tellus ipsum. Enim nisl dictumst ac convallis facilisi mi. Tincidunt lorem amet morbi cras neque. Sagittis pellentesque nisl tellus nisi vel sit. Read more',
-                              style: TextStyle(fontSize: 15),
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: AppColors.appBlack.withOpacity(.6)),
                             )
                           ],
                         ),
                       )
                     : Container(
                         margin: const EdgeInsets.all(10),
-                        height: height * .22,
+                        height: height * .28,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.star,
-                              color: AppColors.appYellow,
-                              size: 100,
+                            const Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  size: 120,
+                                  color: Colors
+                                      .orange, // Set the color to orange/yellow
+                                ),
+                                Text(
+                                  '5.0',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors
+                                        .white, // Set the text color to white
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(
                               height: 5,
@@ -453,7 +486,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                               style: TextStyle(fontSize: 15),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
                             Container(
                               margin:
@@ -479,8 +512,8 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * .03),
                   child: AppButton(
-                    pressedFunction: () =>
-                        Navigator.of(context).pushNamed(AppRoutes.signInScreen),
+                    pressedFunction: () => Navigator.of(context)
+                        .pushNamed(AppRoutes.bookingScreen),
                     buttonColor: AppColors.appGreen,
                     textColor: AppColors.appWhite,
                     buttonText:
@@ -495,11 +528,65 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
               ],
             ),
             Positioned(
-              top: 100,
-              left: 10,
-              child: GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
-                  child: const Icon(Icons.arrow_back_ios_rounded)),
+              top: 75,
+              left: 0,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                width: width * .95,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Icon(
+                          Icons.arrow_back_ios_rounded,
+                          color: AppColors.appWhite,
+                        )),
+                    const Expanded(child: SizedBox()),
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Image.asset(
+                          AppImages.moonWhitePng,
+                          color: AppColors.appWhite,
+                        )),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Image.asset(
+                          AppImages.notificationsPng,
+                          color: AppColors.appWhite,
+                        )),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Image.asset(
+                          AppImages.bookmarkIconPng,
+                          color: AppColors.appWhite,
+                        )),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Image.asset(
+                          AppImages.cautionPng,
+                          color: AppColors.appWhite,
+                        )),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Image.asset(
+                          AppImages.sharePng,
+                          color: AppColors.appWhite,
+                        )),
+                  ],
+                ),
+              ),
             )
           ],
         ),

@@ -11,7 +11,7 @@ class ExploreWidget extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
 
     return Container(
-      height: height * .24,
+      height: height * .22,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(12)),

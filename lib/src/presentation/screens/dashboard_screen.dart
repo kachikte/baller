@@ -22,8 +22,27 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
+    List games = [
+      {'name': 'Football', 'image': AppImages.footBallPng},
+      {'name': 'BasketBall', 'image': AppImages.basketBallPng},
+      {'name': 'Track', 'image': AppImages.runPng},
+      {'name': 'Volleyball', 'image': AppImages.volleyBallPng},
+      {'name': 'Handball', 'image': AppImages.handballPng},
+      {'name': 'Wrestling', 'image': AppImages.wrestlingPng},
+      {'name': 'E-Sports', 'image': AppImages.gamePadPng},
+      {'name': 'Table Tennis', 'image': AppImages.tableTenisPng},
+      {'name': 'Boxing', 'image': AppImages.boxingPng},
+      {'name': 'Gymnastics', 'image': AppImages.gymnasticsPng},
+      {'name': 'Polo', 'image': AppImages.poloPng},
+      {'name': 'Badminton', 'image': AppImages.badmintonPng},
+      {'name': 'Taekwondo', 'image': AppImages.taekwondoPng},
+    ];
+
     showModalBottom() {
       return showModalBottomSheet(
+          isScrollControlled: true,
+          showDragHandle: true,
+          enableDrag: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
@@ -33,7 +52,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           context: context,
           builder: (ctx) {
             return Container(
-              height: height * .5,
+              height: height * .55,
               width: width,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -42,7 +61,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(
@@ -84,6 +103,79 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   Divider(
                     color: AppColors.appBlack.withOpacity((.4)),
                     height: 3,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    // margin: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Wrap(
+                      spacing: 20.0, // Space between widgets horizontally
+                      runSpacing: 10.0, // Space between rows
+                      children: List.generate(games.length, (index) {
+                        // bool containsProficiency =
+                        // skillProficienciesProv.contains(skillProficiencies[index]);
+
+                        return IntrinsicWidth(
+                          child: GestureDetector(
+                            // onTap: () {
+                            //   ref
+                            //       .read(skillProficienciesProvider.notifier)
+                            //       .update((state) {
+                            //     // Check if the item exists in the list
+                            //     if (containsProficiency) {
+                            //       // If it exists, remove it
+                            //       return state
+                            //           .where(
+                            //               (item) => item != skillProficiencies[index])
+                            //           .toList();
+                            //     } else {
+                            //       // If it doesn't exist, add it
+                            //       return [...state, skillProficiencies[index]];
+                            //     }
+                            //   });
+                            // },
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                left: 10,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12.0, vertical: 8.0),
+                              decoration: BoxDecoration(
+                                  color: AppColors.appWhite,
+                                  // color: containsProficiency
+                                  //     ? AppColors.primaryDark
+                                  //     : AppColors.appGrey.withOpacity(.5),
+                                  border: Border.all(
+                                      color: AppColors.primaryBackgroundColor
+                                          .withOpacity(.2),
+                                      width: 1),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10))),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    Image.asset(games[index]['image']),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      games[index]['name'],
+                                      style: TextStyle(
+                                          color: AppColors.appBlack,
+                                          // color: containsProficiency
+                                          //     ? AppColors.appWhite
+                                          //     : AppColors.appBlack.withOpacity(.5),
+                                          fontSize: 13),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -222,9 +314,6 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const ExploreWidget(),
-              const SizedBox(
-                height: 20,
-              ),
               GestureDetector(
                   onTap: navigateToMatchList,
                   child: const TitleRowWidget(
