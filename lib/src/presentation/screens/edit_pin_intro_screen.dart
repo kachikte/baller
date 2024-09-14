@@ -40,7 +40,10 @@ class _EditPinIntroScreenState extends ConsumerState<EditPinIntroScreen> {
         ),
         title: Text(
           "PIN",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -53,50 +56,44 @@ class _EditPinIntroScreenState extends ConsumerState<EditPinIntroScreen> {
               height: height * .02,
             ),
             GestureDetector(
-              onTap: () {
-                ref.read(isPinEditProvider.notifier).state = true;
-                Navigator.of(context).pushNamed(AppRoutes.newPinScreen);
-              },
-              child: Container(
-                width: width,
-                height: height * .1,
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    color: AppColors.primaryBackgroundColor.withOpacity(.1),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: width * .55,
-                      child: const Column(
+                onTap: () {
+                  ref.read(isPinEditProvider.notifier).state = true;
+                  Navigator.of(context).pushNamed(AppRoutes.newPinScreen);
+                },
+                child: Container(
+                  width: width,
+                  height: 68,
+                  margin: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      color: AppColors.primaryBackgroundColor.withOpacity(.1),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Set up PIN',
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.w700),
+                            style: Theme.of(context).textTheme.headline3,
                           ),
                           Text(
                             'Create a PIN to secure your account',
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           )
                         ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 25,
-                      color: AppColors.appBlack.withOpacity(.4),
-                    )
-                  ],
-                ),
-              ),
-            ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 32,
+                        color: AppColors.appBlack.withOpacity(.4),
+                      )
+                    ],
+                  ),
+                )),
           ],
         ),
       ),

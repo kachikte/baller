@@ -29,7 +29,10 @@ class _NotificationSettingScreenState
         ),
         title: Text(
           "Notification settings",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -39,44 +42,32 @@ class _NotificationSettingScreenState
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: height * .02,
+              height: height * .03,
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * .03),
-              // padding: EdgeInsets.symmetric(
-              //     vertical: height * .02, horizontal: width * .03),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               width: width,
+              height: 209,
               decoration: BoxDecoration(
                   border: Border.all(
                       color: AppColors.appBlack.withOpacity(.2), width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Booking',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.appBlack.withOpacity(.5),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                  Text(
+                    'Booking',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                   Container(
                     width: width,
-                    height: height * .2,
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.all(15),
+                    height: 145,
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: AppColors.primaryBackgroundColor.withOpacity(.1),
                         borderRadius:
@@ -88,36 +79,40 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Booking confirmations',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Receive notifications when a booking is successfully confirmed.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -125,44 +120,44 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Booking reminders',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Get reminders about upcoming bookings.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         )
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                 ],
               ),
@@ -172,40 +167,28 @@ class _NotificationSettingScreenState
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * .03),
-              // padding: EdgeInsets.symmetric(
-              //     vertical: height * .02, horizontal: width * .03),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               width: width,
+              height: 209,
               decoration: BoxDecoration(
                   border: Border.all(
                       color: AppColors.appBlack.withOpacity(.2), width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Events and special offers',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.appBlack.withOpacity(.5),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                  Text(
+                    'Events and special offers',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                   Container(
                     width: width,
-                    height: height * .2,
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.all(15),
+                    height: 145,
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: AppColors.primaryBackgroundColor.withOpacity(.1),
                         borderRadius:
@@ -217,36 +200,40 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Event updates',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Stay informed about any changes or updates to upcoming events.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -254,44 +241,44 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Special offers & promotions',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Receive notifications about exclusive deals, discounts, and promotions.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         )
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                 ],
               ),
@@ -301,40 +288,28 @@ class _NotificationSettingScreenState
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * .03),
-              // padding: EdgeInsets.symmetric(
-              //     vertical: height * .02, horizontal: width * .03),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               width: width,
+              height: 209,
               decoration: BoxDecoration(
                   border: Border.all(
                       color: AppColors.appBlack.withOpacity(.2), width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Arena',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.appBlack.withOpacity(.5),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                  Text(
+                    'Arena',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                   Container(
                     width: width,
-                    height: height * .2,
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.all(15),
+                    height: 145,
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: AppColors.primaryBackgroundColor.withOpacity(.1),
                         borderRadius:
@@ -346,36 +321,40 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'New arenas',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Get notified when new arenas.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -383,44 +362,44 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Arena availability',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Get notified when fields you have in favourites become available.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         )
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                 ],
               ),
@@ -430,40 +409,28 @@ class _NotificationSettingScreenState
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * .03),
-              // padding: EdgeInsets.symmetric(
-              //     vertical: height * .02, horizontal: width * .03),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               width: width,
+              height: 209,
               decoration: BoxDecoration(
                   border: Border.all(
                       color: AppColors.appBlack.withOpacity(.2), width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Account',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.appBlack.withOpacity(.5),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                  Text(
+                    'Account',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                   Container(
                     width: width,
-                    height: height * .2,
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.all(15),
+                    height: 145,
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: AppColors.primaryBackgroundColor.withOpacity(.1),
                         borderRadius:
@@ -475,36 +442,40 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Security alerts',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Get notified when new arenas.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -512,44 +483,44 @@ class _NotificationSettingScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Arena availability',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Get notified when fields you have in favourites become available.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         )
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                 ],
               ),

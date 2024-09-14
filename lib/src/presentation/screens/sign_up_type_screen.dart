@@ -32,7 +32,10 @@ class SignUpTypeScreen extends ConsumerWidget {
         ),
         title: Text(
           "Create An Account",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -70,12 +73,13 @@ class SignUpTypeScreen extends ConsumerWidget {
               height: height * .05,
             ),
             AccountTypeWidget(
-              imagePath: AppImages.explorePng,
-              isActive: isIndividualAccount == Constants.personalAccount,
-              func: () {
-                log('this is the personal');
-                ref.read(isIndividualAccountTypeProvider.notifier).state = Constants.personalAccount;
-              },
+                imagePath: AppImages.exploreJpgOne,
+                isActive: isIndividualAccount == Constants.personalAccount,
+                func: () {
+                  log('this is the personal');
+                  ref.read(isIndividualAccountTypeProvider.notifier).state =
+                      Constants.personalAccount;
+                },
                 title: Constants.personalAccount,
                 body:
                     'You love to play with friends and colleagues 😃 or by yourself😢 '),
@@ -83,15 +87,16 @@ class SignUpTypeScreen extends ConsumerWidget {
               height: 25,
             ),
             AccountTypeWidget(
-              imagePath: AppImages.ballersStadium,
+                imagePath: AppImages.ballersStadium,
                 isActive: isIndividualAccount == Constants.businessAccount,
                 func: () {
                   log('this is the business');
-                  ref.read(isIndividualAccountTypeProvider.notifier).state = Constants.businessAccount;
+                  ref.read(isIndividualAccountTypeProvider.notifier).state =
+                      Constants.businessAccount;
                 },
                 title: Constants.businessAccount,
                 body:
-                'You own an arena and you love making money hassle free 😃'),
+                    'You own an arena and you love making money hassle free 😃'),
             SizedBox(
               height: height * .05,
             ),

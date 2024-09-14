@@ -3,6 +3,7 @@ import 'package:baller/src/presentation/providers/home_provider.dart';
 import 'package:baller/src/presentation/screens/arena_screen.dart';
 import 'package:baller/src/presentation/screens/booking_home_screen.dart';
 import 'package:baller/src/presentation/screens/dashboard_screen.dart';
+import 'package:baller/src/presentation/screens/favorite_screen.dart';
 import 'package:baller/src/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +24,7 @@ class _LandingScreenState extends ConsumerState<LandingScreen> {
     DashboardScreen(),
     BookingHomeScreen(),
     ArenaScreen(),
-    DashboardScreen(),
+    FavoriteScreen(),
   ];
 
   @override
@@ -35,19 +36,33 @@ class _LandingScreenState extends ConsumerState<LandingScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: _buildIcon(AppImages.dashboardPng, homeIndex == 0),
+            icon: _buildIcon(
+                homeIndex == 0
+                    ? AppImages.homeActivePng
+                    : AppImages.dashboardPng,
+                homeIndex == 0),
             label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: _buildIcon(AppImages.bookingsPng, homeIndex == 1),
+            icon: _buildIcon(
+                homeIndex == 1
+                    ? AppImages.bookingActivePng
+                    : AppImages.bookingsPng,
+                homeIndex == 1),
             label: 'Bookings',
           ),
           BottomNavigationBarItem(
-            icon: _buildIcon(AppImages.arenaPng, homeIndex == 2),
+            icon: _buildIcon(
+                homeIndex == 2 ? AppImages.arenaActivePng : AppImages.arenaPng,
+                homeIndex == 2),
             label: 'Arenas',
           ),
           BottomNavigationBarItem(
-            icon: _buildIcon(AppImages.favoriteTabPng, homeIndex == 3),
+            icon: _buildIcon(
+                homeIndex == 3
+                    ? AppImages.favoriteActivePng
+                    : AppImages.favoriteTabPng,
+                homeIndex == 3),
             label: 'Favorites',
           ),
         ],
@@ -67,7 +82,11 @@ class _LandingScreenState extends ConsumerState<LandingScreen> {
         isSelected ? AppColors.appGreen : AppColors.primaryBackgroundColor,
         BlendMode.srcIn,
       ),
-      child: Image.asset(asset),
+      child: Image.asset(
+        asset,
+        width: 24,
+        height: 24,
+      ),
     );
   }
 }

@@ -20,14 +20,17 @@ class TitleRowWidget extends StatelessWidget {
         children: [
           Text(
             leadingText,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            style: Theme.of(context)
+                .textTheme
+                .bodyText2!
+                .copyWith(color: AppColors.appBlack),
           ),
           Text(
             trailingText,
-            style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: AppColors.appGreen),
+            style: Theme.of(context)
+                .textTheme
+                .headline3!
+                .copyWith(color: AppColors.appGreen),
           )
         ],
       ),

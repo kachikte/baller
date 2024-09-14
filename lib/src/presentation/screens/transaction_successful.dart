@@ -1,6 +1,7 @@
 import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,34 +49,40 @@ class _TransactionSuccessfulScreenState
         child: Column(
           children: [
             SizedBox(
-              height: height * .72,
+              height: AppHelperFunctions.dimensionHeight(height, 175),
+            ),
+            SizedBox(
+              height: 287,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(AppImages.transactionSuccessfulPng),
+                  Image.asset(
+                    AppImages.transactionSuccessfulPng,
+                    width: 151,
+                    height: 151,
+                  ),
                   const SizedBox(
                     height: 15,
                   ),
-                  const Text(
+                  Text(
                     'Transaction Successful',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   const SizedBox(
                     height: 4,
                   ),
                   Text(
                     'Your transfer was successful and booking confirmed.',
-                    style: TextStyle(
-                      color: AppColors.appBlack.withOpacity(.5),
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   SizedBox(
-                    width: width * .5,
+                    width: 225,
                     child: AppButton(
+                        buttonHeight: 37,
                         buttonRadius: 10,
                         borderColor:
                             AppColors.primaryBackgroundColor.withOpacity(.3),
@@ -86,11 +93,14 @@ class _TransactionSuccessfulScreenState
                 ],
               ),
             ),
+            SizedBox(
+              height: AppHelperFunctions.dimensionHeight(height, 100),
+            ),
             Container(
               width: width,
-              height: 70,
               padding: const EdgeInsets.all(10),
               child: AppButton(
+                  buttonHeight: 64,
                   buttonRadius: 10,
                   borderColor: AppColors.primaryBackgroundColor.withOpacity(.3),
                   pressedFunction: () {},

@@ -43,7 +43,10 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         ),
         title: Text(
           "Profile details",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -84,8 +87,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               height: height * .015,
             ),
             SizedBox(
-              width: width * .45,
+              width: 186,
               child: AppButton(
+                  buttonHeight: 32,
                   buttonIcon: Image.asset(AppImages.ballersEdit),
                   borderColor: AppColors.primaryBackgroundColor,
                   pressedFunction: () =>
@@ -97,6 +101,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               height: height * .025,
             ),
             AppInput(
+                textFieldHeight: 64,
                 textEditingController: firstNameController,
                 suffixIcon: inputError
                     ? Icon(
@@ -112,6 +117,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 label: "First Name",
                 height: height),
             AppInput(
+                textFieldHeight: 64,
                 textEditingController: lastNameController,
                 suffixIcon: inputError
                     ? Icon(
@@ -127,6 +133,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 label: "Last Name",
                 height: height),
             AppInput(
+                textFieldHeight: 64,
                 textEditingController: emailController,
                 suffixIcon: inputError
                     ? Icon(
@@ -142,6 +149,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 label: "Email Address",
                 height: height),
             AppInput(
+                textFieldHeight: 64,
                 textInputType: TextInputType.number,
                 textEditingController: phoneController,
                 suffixIcon: inputError
@@ -165,11 +173,12 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               height: 3,
             ),
             SizedBox(
-              height: height * .02,
+              height: height * .03,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: AppButton(
+                buttonHeight: 53,
                 borderColor: AppColors.appBlack.withOpacity(.3),
                 pressedFunction: emailController.text.isNotEmpty && buttonActive
                     ? () => editProfile()
@@ -183,6 +192,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     ? AppColors.appWhite
                     : AppColors.primaryBackgroundColor,
               ),
+            ),
+            SizedBox(
+              height: height * .07,
             ),
           ],
         ),

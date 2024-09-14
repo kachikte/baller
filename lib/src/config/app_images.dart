@@ -24,7 +24,6 @@ class AppImages {
   static const lockIconPng = "assets/images/png/lock_icon.png";
   static const keyPng = "assets/images/png/baller_key.png";
   static const logo = "assets/images/logo/logo.png";
-  static const explorePng = "assets/images/png/ballers_explore.png";
   static const footballField = "assets/images/png/football_field.png";
   static const exploreBackgroundPattern =
       "assets/images/png/banner_pattern.png";
@@ -67,6 +66,8 @@ class AppImages {
   static const transferPng = "assets/images/png/transfer.png";
   static const debitPng = "assets/images/png/debit.png";
   static const copyPng = "assets/images/png/copy.png";
+  static const mapPng = "assets/images/png/map.png";
+
   static const transactionSuccessfulPng =
       "assets/images/png/transaction_successful.png";
 
@@ -84,7 +85,17 @@ class AppImages {
   static const taekwondoPng = "assets/images/png/taekwondo.png";
   static const volleyBallPng = "assets/images/png/volleyball.png";
   static const wrestlingPng = "assets/images/png/wrestling.png";
+  static const reviewStarPng = "assets/images/png/review_star.png";
+  static const homeActivePng = "assets/images/png/home_active.png";
+  static const bookingActivePng = "assets/images/png/booking_active.png";
+  static const arenaActivePng = "assets/images/png/arena_active.png";
+  static const favoriteActivePng = "assets/images/png/favorite_active.png";
 
   //jpg
-  static const basketBallCourtJpg = "assets/images/jpg/Basketball.jpg";
+  static const basketBallCourtJpg = "assets/images/jpg/Basketball.jpeg";
+  static const darkBackgroundJpg = "assets/images/jpg/dark_background.jpeg";
+  static const exploreJpgOne = "assets/images/jpg/ballers_explore_one.jpeg";
+  static const exploreJpgTwo = "assets/images/jpg/ballers_explore_two.jpeg";
+  static const exploreJpgThree = "assets/images/jpg/ballers_explore_three.jpeg";
+  static const ballersProfJpg = "assets/images/jpg/ballers_prof.jpeg";
 }

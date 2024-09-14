@@ -1,6 +1,7 @@
 import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -54,7 +55,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
           context: context,
           builder: (ctx) {
             return Container(
-              height: height * .9,
+              height: AppHelperFunctions.dimensionHeight(height, 720),
               width: width,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -64,9 +65,6 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
                     Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 10,
@@ -74,18 +72,19 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Filter options',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 15),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: AppColors.appBlack),
                               ),
                               Text(
                                 'Select the filter options.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 12),
+                                style: Theme.of(context).textTheme.bodyText1,
                               )
                             ],
                           ),
@@ -94,11 +93,11 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                             radius: 15,
                             child: CircleAvatar(
                               backgroundColor: AppColors.appWhite,
-                              radius: 15,
+                              radius: 14,
                               child: Icon(
                                 Icons.close,
                                 color: AppColors.appBlack,
-                                size: 15,
+                                size: 14,
                               ),
                             ),
                           ),
@@ -106,87 +105,65 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 10,
                       ),
-                      child: const Text(
+                      child: Text(
                         'Sports',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 12),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Wrap(
-                      spacing: 20.0, // Space between widgets horizontally
-                      runSpacing: 10.0, // Space between rows
-                      children: List.generate(games.length, (index) {
-                        // bool containsProficiency =
-                        // skillProficienciesProv.contains(skillProficiencies[index]);
-
-                        return IntrinsicWidth(
-                          child: GestureDetector(
-                            // onTap: () {
-                            //   ref
-                            //       .read(skillProficienciesProvider.notifier)
-                            //       .update((state) {
-                            //     // Check if the item exists in the list
-                            //     if (containsProficiency) {
-                            //       // If it exists, remove it
-                            //       return state
-                            //           .where(
-                            //               (item) => item != skillProficiencies[index])
-                            //           .toList();
-                            //     } else {
-                            //       // If it doesn't exist, add it
-                            //       return [...state, skillProficiencies[index]];
-                            //     }
-                            //   });
-                            // },
-                            child: Container(
-                              margin: const EdgeInsets.only(
-                                left: 10,
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0, vertical: 8.0),
-                              decoration: BoxDecoration(
-                                  color: AppColors.appWhite,
-                                  // color: containsProficiency
-                                  //     ? AppColors.primaryDark
-                                  //     : AppColors.appGrey.withOpacity(.5),
-                                  border: Border.all(
-                                      color: AppColors.primaryBackgroundColor
-                                          .withOpacity(.2),
-                                      width: 1),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    Image.asset(games[index]['image']),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      games[index]['name'],
-                                      style: TextStyle(
-                                          color: AppColors.appBlack,
-                                          // color: containsProficiency
-                                          //     ? AppColors.appWhite
-                                          //     : AppColors.appBlack.withOpacity(.5),
-                                          fontSize: 13),
-                                    )
-                                  ],
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Wrap(
+                        spacing: 10.0, // Space between widgets horizontally
+                        runSpacing: 10.0, // Space between rows
+                        children: List.generate(games.length, (index) {
+                          return IntrinsicWidth(
+                            child: GestureDetector(
+                              child: Container(
+                                margin: const EdgeInsets.only(
+                                  left: 3,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6.0, vertical: 4.0),
+                                decoration: BoxDecoration(
+                                    color: AppColors.appWhite,
+                                    border: Border.all(
+                                        color: AppColors.primaryBackgroundColor
+                                            .withOpacity(.2),
+                                        width: 1),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                child: Center(
+                                  child: Row(
+                                    children: [
+                                      Image.asset(games[index]['image']),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        games[index]['name'],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!
+                                            .copyWith(
+                                                color: AppColors.lightText),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -199,91 +176,109 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
-                      child: const Text('Availability status'),
+                          horizontal: 10, vertical: 10),
+                      child: Text(
+                        'Availability status',
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
                     ),
                     SizedBox(
                       width: width,
-                      height: height * .055,
+                      height: 34,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: width * .1,
                             child: CircleAvatar(
-                              radius: 7,
+                              radius: 8,
                               backgroundColor: AppColors.primaryBackgroundColor,
                               child: CircleAvatar(
-                                  radius: 6,
+                                  radius: 7,
                                   backgroundColor: AppColors.appWhite),
                             ),
                           ),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Avalaible',
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                                style: Theme.of(context).textTheme.headline3,
                               ),
-                              Text('Available slots to be booked')
+                              Text(
+                                'Available slots to be booked',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              )
                             ],
                           )
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     SizedBox(
                       width: width,
-                      height: height * .055,
+                      height: 34,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: width * .1,
                             child: CircleAvatar(
-                              radius: 7,
+                              radius: 8,
                               backgroundColor: AppColors.primaryBackgroundColor,
                               child: CircleAvatar(
-                                  radius: 6,
+                                  radius: 7,
                                   backgroundColor: AppColors.appWhite),
                             ),
                           ),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Unavalaible',
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                                style: Theme.of(context).textTheme.headline3,
                               ),
-                              Text('No available slots to be booked')
+                              Text(
+                                'No available slots to be booked',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              )
                             ],
                           )
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     SizedBox(
                       width: width,
-                      height: height * .055,
+                      height: 34,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: width * .1,
                             child: CircleAvatar(
-                              radius: 7,
+                              radius: 8,
                               backgroundColor: AppColors.primaryBackgroundColor,
                               child: CircleAvatar(
-                                  radius: 6,
+                                  radius: 7,
                                   backgroundColor: AppColors.appWhite),
                             ),
                           ),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Closed',
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                                style: Theme.of(context).textTheme.headline3,
                               ),
-                              Text('Kinda self explanatory')
+                              Text(
+                                'Kinda self explanatory',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              )
                             ],
                           )
                         ],
@@ -299,21 +294,24 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                       height: 3,
                     ),
                     Container(
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 4),
                         child: Text(
                           'Price range',
-                          style: TextStyle(
-                              color: AppColors.appBlack.withOpacity(.5)),
+                          style: Theme.of(context).textTheme.headline3,
                         )),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
+                          horizontal: 10, vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             width: width * .45,
                             child: AppButton(
+                                buttonHeight:
+                                    AppHelperFunctions.dimensionHeight(
+                                        height, 64),
                                 buttonRadius: 10,
                                 borderColor: AppColors.appBlack.withOpacity(.5),
                                 pressedFunction: () {},
@@ -324,6 +322,9 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                           SizedBox(
                             width: width * .45,
                             child: AppButton(
+                                buttonHeight:
+                                    AppHelperFunctions.dimensionHeight(
+                                        height, 64),
                                 buttonRadius: 10,
                                 borderColor: AppColors.appBlack.withOpacity(.5),
                                 pressedFunction: () {},
@@ -350,6 +351,9 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                           SizedBox(
                             width: width * .45,
                             child: AppButton(
+                                buttonHeight:
+                                    AppHelperFunctions.dimensionHeight(
+                                        height, 64),
                                 buttonRadius: 10,
                                 borderColor: AppColors.primaryBackgroundColor
                                     .withOpacity(.3),
@@ -360,6 +364,9 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                           SizedBox(
                             width: width * .45,
                             child: AppButton(
+                                buttonHeight:
+                                    AppHelperFunctions.dimensionHeight(
+                                        height, 64),
                                 buttonRadius: 10,
                                 pressedFunction: () {},
                                 buttonColor: AppColors.appBlack,
@@ -385,23 +392,16 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
           children: [
             Text(
               'Arenas',
-              // "Terfa76!🎉",
-              style: TextStyle(color: AppColors.appBlack, fontSize: 25),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ],
         ),
         actions: [
           Image.asset(
             AppImages.moonBold,
-            width: 30,
+            width: 24,
+            height: 24,
           ),
-          // const SizedBox(
-          //   width: 10,
-          // ),
-          // Image.asset(
-          //   AppImages.ballersSearch,
-          //   width: 30,
-          // ),
           const SizedBox(
             width: 10,
           ),
@@ -410,7 +410,8 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                 .pushNamed(AppRoutes.notificationSettingScreen),
             child: Image.asset(
               AppImages.notificationsPng,
-              width: 30,
+              width: 24,
+              height: 24,
             ),
           ),
           const SizedBox(
@@ -430,20 +431,26 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                 height: 10,
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: width * .8,
                     child: AppInput(
+                        textFieldHeight: 64,
                         textEditingController: searchController,
                         suffixIcon: Container(
                           padding: const EdgeInsets.all(15),
                           child: SvgPicture.asset(
                             AppImages.gpsSvg,
                             fit: BoxFit.contain,
+                            height: 20,
+                            width: 20,
                           ),
                         ),
                         icon: Image.asset(
                           AppImages.ballersSearch,
+                          height: 20,
+                          width: 20,
                         ),
                         hintText:
                             "Apo Resettlement Area Sapeyi Palace Crescent",
@@ -455,8 +462,8 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                   GestureDetector(
                     onTap: showModalBottom,
                     child: Container(
-                      width: width * .15,
-                      height: height * .07,
+                      width: 56,
+                      height: 62,
                       decoration: BoxDecoration(
                           color:
                               AppColors.primaryBackgroundColor.withOpacity(.1),
@@ -466,8 +473,8 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                         child: SvgPicture.asset(
                           AppImages.filterSvg,
                           fit: BoxFit.contain,
-                          width: 15,
-                          height: 15,
+                          width: 24,
+                          height: 24,
                         ),
                       ),
                     ),
@@ -476,29 +483,39 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
               ),
               Container(
                 padding: const EdgeInsets.only(left: 10),
-                height: height * .04,
+                height: 37,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
                     return Container(
-                      // width: width * .3,
-                      padding: const EdgeInsets.all(5),
-                      height: height * .02,
+                      margin: const EdgeInsets.only(
+                        left: 3,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6.0, vertical: 4.0),
                       decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
                           color: AppColors.appWhite,
                           border: Border.all(
                               color: AppColors.primaryBackgroundColor
-                                  .withOpacity(.5),
-                              width: 1)),
-                      child: Row(
-                        children: [
-                          Image.asset(games[index]['image']),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(games[index]['name'])
-                        ],
+                                  .withOpacity(.2),
+                              width: 1),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10))),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Image.asset(games[index]['image']),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              games[index]['name'],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -512,11 +529,15 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
-                height: height * .35,
-                decoration: BoxDecoration(color: Colors.amber.withOpacity(.04)),
+                height: 260,
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.amber.withOpacity(.1),
+                    borderRadius: const BorderRadius.all(Radius.circular(16))),
                 child: Column(
                   children: [
                     Container(
@@ -535,7 +556,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * .3,
+                      height: 202,
                       child: ListView.builder(
                           itemBuilder: (ctx, index) {
                             return GestureDetector(
@@ -554,19 +575,20 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
               ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15),
-                height: height * .05,
+                height: 40,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       '8 Available Arenas',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          color: AppColors.lightText,
+                          fontWeight: FontWeight.w700),
                     ),
                     Container(
                       // width: width * .4,
                       padding: const EdgeInsets.all(10),
-                      height: height * .12,
+                      height: 36,
                       decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(25)),
@@ -583,7 +605,13 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                           const SizedBox(
                             width: 10,
                           ),
-                          const Text('Sort')
+                          Text(
+                            'Sort',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(color: AppColors.appBlack),
+                          )
                         ],
                       ),
                     )
@@ -594,13 +622,14 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
                 height: 10,
               ),
               SizedBox(
-                height: height * .3,
+                height: height * .7,
                 child: ListView.separated(
                   itemBuilder: (ctx, index) {
-                    // return const FieldsWidget();
                     return GestureDetector(
                         onTap: navigateToArenaDetails,
-                        child: const FullFeaturedFieldsWidget());
+                        child: const FullFeaturedFieldsWidget(
+                          bookmark: false,
+                        ));
                   },
                   itemCount: 2,
                   separatorBuilder: (context, index) {

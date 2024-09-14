@@ -18,6 +18,7 @@ class AppInput extends ConsumerWidget {
   final double width;
   final String label;
   final TextInputType textInputType;
+  final double textFieldHeight;
 
   AppInput(
       {required this.textEditingController,
@@ -31,6 +32,7 @@ class AppInput extends ConsumerWidget {
       this.isError = false,
       required this.width,
       required this.label,
+      this.textFieldHeight = 70,
       required this.height});
 
   @override
@@ -46,13 +48,14 @@ class AppInput extends ConsumerWidget {
             child: Text(
               label,
               textAlign: TextAlign.start,
-              style: TextStyle(color: AppColors.appBlack),
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           SizedBox(
             height: height * .01,
           ),
           Container(
+            height: textFieldHeight,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
               obscureText:

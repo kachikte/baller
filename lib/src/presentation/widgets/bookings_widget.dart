@@ -14,29 +14,25 @@ class BookingsWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.symmetric(horizontal: width * .03),
-          height: height * .23,
-          width: width * .7,
+          height: 162,
+          width: 232,
           decoration: BoxDecoration(
               border: Border.all(
                   color: AppColors.appBlack.withOpacity(.2), width: 1),
               borderRadius: const BorderRadius.all(Radius.circular(12))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ClipRRect(
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12)),
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
                 child: Image.asset(
                   AppImages.basketBallCourtPng,
-                  width: width,
-                  height: height * .12,
+                  width: 232,
+                  height: 99,
                   fit: BoxFit.cover,
                 ),
-              ),
-              const SizedBox(
-                height: 15,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -46,19 +42,14 @@ class BookingsWidget extends StatelessWidget {
                   children: [
                     Text(
                       '5-a-side football',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                          color: AppColors.appBlack),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     RichText(
                         text: TextSpan(children: [
                       TextSpan(
-                          text: "₦1,000",
-                          style: TextStyle(
-                              color: AppColors.appGreen,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 17)),
+                        text: "₦1,000",
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
                       TextSpan(
                           text: "/hr",
                           style: TextStyle(
@@ -67,28 +58,26 @@ class BookingsWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: SizedBox(
                   width: width * .7,
                   child: Row(
                     children: [
-                      Image.asset(AppImages.footBallPng),
-                      const Text(
+                      Image.asset(
+                        AppImages.footBallPng,
+                        height: 12,
+                        width: 12,
+                      ),
+                      Text(
                         ' ️Football',
                         overflow: TextOverflow.ellipsis,
                         softWrap: true,
-                        style: TextStyle(),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
               ),
             ],
           ),

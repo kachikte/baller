@@ -14,7 +14,7 @@ class ArenaFieldsWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.symmetric(horizontal: width * .03),
-          height: height * .27,
+          height: 202,
           width: width * .8,
           decoration: BoxDecoration(
               color: AppColors.appWhite,
@@ -23,6 +23,7 @@ class ArenaFieldsWidget extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(12))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
                 borderRadius: const BorderRadius.only(
@@ -31,7 +32,7 @@ class ArenaFieldsWidget extends StatelessWidget {
                 child: Image.asset(
                   AppImages.basketBallCourtPng,
                   width: width,
-                  height: height * .12,
+                  height: 99,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -46,17 +47,14 @@ class ArenaFieldsWidget extends StatelessWidget {
                   children: [
                     Text(
                       'Available',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: AppColors.appBlue),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: AppColors.appBlue),
                     ),
-                    const Text(
+                    Text(
                       'Football +2',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ],
                 ),
@@ -68,121 +66,75 @@ class ArenaFieldsWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: SizedBox(
                   width: width * .47,
-                  child: const Text(
+                  child: Text(
                     'Cubic Pythagoras Multiservices Limited',
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: SizedBox(
                   width: width * .7,
-                  child: const Text(
+                  child: Text(
                     'Gwarinpa, Nigeria',
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: SizedBox(
-                      width: width * .7,
-                      child: const Text(
-                        'From ₦1,000',
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w200,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              // Row(
-              //   children: [
-              //     Row(
-              //       mainAxisAlignment: MainAxisAlignment.start,
-              //       children: [
-              //         Icon(
-              //           Icons.sports_baseball,
-              //           size: 12,
-              //           color: AppColors.appBlack.withOpacity(.5),
-              //         ),
-              //         const SizedBox(
-              //           width: 5,
-              //         ),
-              //         Text(
-              //           'Football',
-              //           style: TextStyle(
-              //               fontSize: 12,
-              //               color: AppColors.appBlack.withOpacity(.5)),
-              //         ),
-              //       ],
-              //     ),
-              //     SizedBox(
-              //       width: width * .01,
-              //     ),
-              //     SizedBox(
-              //         width: 10,
-              //         height: height * .015,
-              //         child: VerticalDivider(
-              //           width: 10,
-              //           color: AppColors.appBlack,
-              //         )),
-              //     SizedBox(
-              //       width: width * .01,
-              //     ),
-              //     Row(
-              //       children: [
-              //         Icon(
-              //           Icons.location_on_rounded,
-              //           size: 12,
-              //           color: AppColors.appBlack.withOpacity(.5),
-              //         ),
-              //         const SizedBox(
-              //           width: 5,
-              //         ),
-              //         Text(
-              //           'Gwarinpa',
-              //           style: TextStyle(
-              //               fontSize: 12,
-              //               color: AppColors.appBlack.withOpacity(.5)),
-              //         ),
-              //       ],
-              //     ),
-              //   ],
+              // const SizedBox(
+              //   height: 5,
               // ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                width: width * .8,
+                child: Row(
+                  children: [
+                    Text(
+                      'From ₦1,000',
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    const Expanded(child: SizedBox()),
+                    Icon(
+                      Icons.star,
+                      color: AppColors.appYellow,
+                      size: 16,
+                    ),
+                    Text(
+                      '3.5',
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(color: AppColors.lightText),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
         Positioned(
-          top: 10,
-          left: 10,
+          top: 7,
+          left: 20,
           child: SizedBox(
             width: width * .75,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: height * .04,
+                  height: 28,
                   width: width * .08,
                   decoration: BoxDecoration(
                       color: AppColors.appWhite,
@@ -198,6 +150,5 @@ class ArenaFieldsWidget extends StatelessWidget {
         )
       ],
     );
-    ;
   }
 }

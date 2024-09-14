@@ -1,11 +1,9 @@
 import 'dart:developer';
 
-import 'package:baller/src/config/app_images.dart';
 import 'package:baller/src/config/config.dart';
 import 'package:baller/src/domain/dto/dto.dart';
 import 'package:baller/src/domain/models/models.dart';
 import 'package:baller/src/presentation/providers/providers.dart';
-import 'package:baller/src/presentation/widgets/app_button.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
 import 'package:baller/src/utils/constants.dart';
@@ -74,7 +72,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
             email: loginModel.email);
         ref.read(userProvider.notifier).setUser(userModel);
         ref.read(buttonProvider.notifier).state = true;
-        Navigator.pushNamed(context, AppRoutes.verifyAccountScreen, arguments: {'email': emailController.text, 'type': Constants.verifyScreen});
+        Navigator.pushNamed(context, AppRoutes.verifyAccountScreen, arguments: {
+          'email': emailController.text,
+          'type': Constants.verifyScreen
+        });
       }
     }).catchError((err) {
       log('This is the error of the sign in - $err');
@@ -112,7 +113,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         ),
         title: Text(
           "Create An Account",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -315,7 +319,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 label: "Email Address",
                 height: height),
             AppInput(
-              textInputType: TextInputType.number,
+                textInputType: TextInputType.number,
                 textEditingController: phoneController,
                 suffixIcon: inputError
                     ? Icon(

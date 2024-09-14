@@ -28,7 +28,10 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
         ),
         title: Text(
           "Privacy settings",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -42,89 +45,70 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * .03),
-              // padding: EdgeInsets.symmetric(
-              //     vertical: height * .02, horizontal: width * .03),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               width: width,
+              height: 146,
               decoration: BoxDecoration(
                   border: Border.all(
                       color: AppColors.appBlack.withOpacity(.2), width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Location Privacy',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.appBlack.withOpacity(.5),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                  Text(
+                    'Location Privacy',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                   Container(
                     width: width,
-                    height: height * .1,
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.all(15),
+                    height: 85,
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: AppColors.primaryBackgroundColor.withOpacity(.1),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: width * .55,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    'Show Nearby Arenas',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    'Allow the display of your location to find nearby fields.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
-                                  )
-                                ],
+                        SizedBox(
+                          width: width * .68,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Show Nearby Arenas',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: AppColors.appBlack),
                               ),
-                            ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
-                            ),
-                          ],
+                              Text(
+                                'Allow the display of your location to find nearby fields.',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 36,
+                          height: 20,
+                          child: CupertinoSwitch(
+                            value: isSwitchOn,
+                            onChanged: (value) {
+                              ref.read(switchOnProvider.notifier).state = value;
+                              // setState(() {
+                              //   _switchValue = value;
+                              // });
+                            },
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                 ],
               ),
@@ -134,40 +118,28 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * .03),
-              // padding: EdgeInsets.symmetric(
-              //     vertical: height * .02, horizontal: width * .03),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               width: width,
+              height: 209,
               decoration: BoxDecoration(
                   border: Border.all(
                       color: AppColors.appBlack.withOpacity(.2), width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Data Sharing Preferences',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.appBlack.withOpacity(.5),
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                  Text(
+                    'Data Sharing Preferences',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: AppColors.appBlack),
                   ),
                   Container(
                     width: width,
-                    height: height * .2,
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.all(15),
+                    height: 145,
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: AppColors.primaryBackgroundColor.withOpacity(.1),
                         borderRadius:
@@ -179,36 +151,40 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Third-Party Integrations',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
-                                    'Data can be shared with third-party services.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    'GData can be shared with third-party services.',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -216,50 +192,47 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: width * .55,
+                              width: width * .68,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Marketing Communications',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
                                   ),
                                   Text(
                                     'Opt-in or opt-out of receiving marketing communications and promotions.',
-                                    style: TextStyle(
-                                      color: AppColors.appBlack.withOpacity(.5),
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                             ),
-                            CupertinoSwitch(
-                              value: isSwitchOn,
-                              onChanged: (value) {
-                                ref.read(switchOnProvider.notifier).state =
-                                    value;
-                                // setState(() {
-                                //   _switchValue = value;
-                                // });
-                              },
+                            SizedBox(
+                              width: 36,
+                              height: 20,
+                              child: CupertinoSwitch(
+                                value: isSwitchOn,
+                                onChanged: (value) {
+                                  ref.read(switchOnProvider.notifier).state =
+                                      value;
+                                  // setState(() {
+                                  //   _switchValue = value;
+                                  // });
+                                },
+                              ),
                             ),
                           ],
                         )
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: height * .02,
             ),
           ],
         ),

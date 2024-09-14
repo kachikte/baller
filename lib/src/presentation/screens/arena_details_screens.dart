@@ -2,6 +2,7 @@ import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/providers/arena_provider.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:baller/src/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,17 +73,16 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 'Review',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 17),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: AppColors.appBlack),
                               ),
                               Text(
                                 'Submit your review.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack.withOpacity(.5)),
+                                style: Theme.of(context).textTheme.bodyText1,
                               )
                             ],
                           ),
@@ -91,11 +91,11 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                             radius: 15,
                             child: CircleAvatar(
                               backgroundColor: AppColors.appWhite,
-                              radius: 15,
+                              radius: 14,
                               child: Icon(
                                 Icons.close,
                                 color: AppColors.appBlack,
-                                size: 15,
+                                size: 14,
                               ),
                             ),
                           ),
@@ -103,7 +103,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                         Icon(
                           Icons.star,
                           color: AppColors.appYellow,
-                          size: 30,
+                          size: 26.36,
                         ),
                         const SizedBox(
                           width: 5,
@@ -120,7 +120,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                           Icons.star,
                           color:
                               AppColors.primaryBackgroundColor.withOpacity(.5),
-                          size: 30,
+                          size: 26.36,
                         ),
                         const SizedBox(
                           width: 5,
@@ -129,7 +129,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                           Icons.star,
                           color:
                               AppColors.primaryBackgroundColor.withOpacity(.5),
-                          size: 30,
+                          size: 26.36,
                         ),
                         const SizedBox(
                           width: 5,
@@ -138,7 +138,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                           Icons.star,
                           color:
                               AppColors.primaryBackgroundColor.withOpacity(.5),
-                          size: 30,
+                          size: 26.36,
                         ),
                         const SizedBox(
                           width: 5,
@@ -147,16 +147,17 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                           Icons.star,
                           color:
                               AppColors.primaryBackgroundColor.withOpacity(.5),
-                          size: 30,
+                          size: 26.36,
                         ),
                         const SizedBox(
                           width: 5,
                         ),
                         Text(
                           '1.0',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: AppColors.appBlack.withOpacity(.5)),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText),
                         )
                       ],
                     ),
@@ -192,6 +193,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 20),
                       child: AppButton(
+                          buttonHeight: 53,
                           buttonRadius: 10,
                           pressedFunction: () {},
                           buttonColor: AppColors.appBlack,
@@ -213,7 +215,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
             Column(
               children: [
                 Container(
-                  height: height * .25,
+                  height: AppHelperFunctions.dimensionHeight(height, 254),
                   decoration: BoxDecoration(
                     color: AppColors.primaryColor,
                     image: const DecorationImage(
@@ -230,8 +232,8 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                     children: [
                       Image.asset(
                         AppImages.matchDetailProfile,
-                        width: 50,
-                        height: 50,
+                        height: AppHelperFunctions.dimensionHeight(height, 62),
+                        width: AppHelperFunctions.dimensionWidth(width, 62),
                       ),
                       const SizedBox(
                         width: 10,
@@ -246,19 +248,16 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                                     .withOpacity(.5),
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20))),
-                            child: const Center(
+                            child: Center(
                               child: Text(
                                 'Cubic Pythagoras Multiservices Limited',
-                                style: TextStyle(fontSize: 10),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ),
                           ),
                           Text(
                             'Estate Basketball Court',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                color: AppColors.appBlack),
+                            style: Theme.of(context).textTheme.headline2,
                           )
                         ],
                       ),
@@ -266,11 +265,14 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                       Icon(
                         Icons.star,
                         color: AppColors.appYellow,
-                        size: 14,
+                        size: 16,
                       ),
-                      const Text(
+                      Text(
                         '3.5',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: AppColors.appBlack),
                       )
                     ],
                   ),
@@ -280,11 +282,11 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                   height: height * .05,
                   child: Row(
                     children: [
-                      Text(
-                        '0.5 mi away',
-                        style: TextStyle(
-                            color: AppColors.appBlack.withOpacity(.4)),
-                      ),
+                      Text('0.5 mi away',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText)),
                       const SizedBox(
                         width: 10,
                       ),
@@ -297,8 +299,10 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                         width: 10,
                       ),
                       Text('Gwarinpa, Nigeria',
-                          style: TextStyle(
-                              color: AppColors.appBlack.withOpacity(.4)))
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText)),
                     ],
                   ),
                 ),
@@ -309,8 +313,10 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                     children: [
                       Image.asset(AppImages.footBallPng),
                       Text(' Football',
-                          style: TextStyle(
-                              color: AppColors.appBlack.withOpacity(.4))),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText)),
                       const SizedBox(
                         width: 10,
                       ),
@@ -322,8 +328,10 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                       ),
                       Image.asset(AppImages.basketBallPng),
                       Text(' Basketball',
-                          style: TextStyle(
-                              color: AppColors.appBlack.withOpacity(.4)))
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText))
                     ],
                   ),
                 ),
@@ -337,9 +345,9 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                     return IntrinsicWidth(
                       child: GestureDetector(
                         child: Container(
-                          margin: const EdgeInsets.only(
-                            left: 10,
-                          ),
+                          // margin: const EdgeInsets.only(
+                          //   left: 10,
+                          // ),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10.0, vertical: 6.0),
                           decoration: BoxDecoration(
@@ -349,11 +357,8 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(40))),
                           child: Center(
-                            child: Text(
-                              games[index],
-                              style: TextStyle(
-                                  color: AppColors.appBlack, fontSize: 12),
-                            ),
+                            child: Text(games[index],
+                                style: Theme.of(context).textTheme.headline3),
                           ),
                         ),
                       ),
@@ -387,10 +392,15 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                             child: Center(
                                 child: Text(
                               Constants.revDets,
-                              style: TextStyle(
-                                  fontWeight: reviewDetail == Constants.revDets
-                                      ? FontWeight.w700
-                                      : FontWeight.normal),
+                              style: reviewDetail == Constants.revDets
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.lightText),
                             )),
                           ),
                         ),
@@ -414,10 +424,15 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                             child: Center(
                                 child: Text(
                               Constants.reviews,
-                              style: TextStyle(
-                                  fontWeight: reviewDetail == Constants.reviews
-                                      ? FontWeight.w700
-                                      : FontWeight.normal),
+                              style: reviewDetail == Constants.reviews
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.lightText),
                             )),
                           ),
                         ),
@@ -435,55 +450,43 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Overview',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 17),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
                             ),
                             const SizedBox(
                               height: 5,
                             ),
                             Text(
                               'Lorem ipsum dolor sit amet consectetur. Et placerat rhoncus vehicula tellus ipsum. Enim nisl dictumst ac convallis facilisi mi. Tincidunt lorem amet morbi cras neque. Sagittis pellentesque nisl tellus nisi vel sit. Read more',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: AppColors.appBlack.withOpacity(.6)),
+                              style: Theme.of(context).textTheme.headline3,
                             )
                           ],
                         ),
                       )
                     : Container(
                         margin: const EdgeInsets.all(10),
-                        height: height * .28,
+                        // height: height * .28,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  size: 120,
-                                  color: Colors
-                                      .orange, // Set the color to orange/yellow
-                                ),
-                                Text(
-                                  '5.0',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors
-                                        .white, // Set the text color to white
-                                  ),
-                                ),
-                              ],
+                            Image.asset(
+                              AppImages.reviewStarPng,
+                              height: 108,
+                              width: 109.71, // Set the color to orange/yellow
                             ),
                             const SizedBox(
                               height: 5,
                             ),
-                            const Text(
+                            Text(
                               'Based on 200 ratings',
-                              style: TextStyle(fontSize: 15),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.lightText),
                             ),
                             const SizedBox(
                               height: 10,
@@ -492,6 +495,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                               margin:
                                   EdgeInsets.symmetric(horizontal: width * .03),
                               child: AppButton(
+                                buttonHeight: 48,
                                 pressedFunction: showModalBottom,
                                 buttonColor: AppColors.appBlack,
                                 textColor: AppColors.appWhite,
@@ -510,14 +514,19 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
                   height: 20,
                 ),
                 Container(
+                  width: width,
                   margin: EdgeInsets.symmetric(horizontal: width * .03),
                   child: AppButton(
+                    isSuffixText: true,
                     pressedFunction: () => Navigator.of(context)
                         .pushNamed(AppRoutes.bookingScreen),
                     buttonColor: AppColors.appGreen,
                     textColor: AppColors.appWhite,
-                    buttonText:
-                        'Book now                                           from ₦1,000',
+                    buttonText: 'Book now',
+                    suffixButtonIcon: Text(
+                      'from ₦1,000',
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
                     buttonRadius: 10,
                     borderColor: AppColors.appRed.withOpacity(.1),
                   ),
@@ -528,7 +537,7 @@ class _ArenaDetailsScreenState extends ConsumerState<ArenaDetailsScreen> {
               ],
             ),
             Positioned(
-              top: 75,
+              top: AppHelperFunctions.dimensionHeight(height, 80),
               left: 0,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),

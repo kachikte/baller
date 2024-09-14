@@ -115,7 +115,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         ),
         title: Text(
           "Sign In",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -173,17 +176,15 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 "Welcome back",
-                style: TextStyle(
-                    color: AppColors.appBlack,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20),
+                style: Theme.of(context).textTheme.headline1,
               ),
             ),
             Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   'Enter details below',
-                  style: TextStyle(color: AppColors.appBlack.withOpacity(.4)),
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      fontWeight: FontWeight.w400, color: AppColors.lightText),
                 )),
             SizedBox(
               height: height * .025,
@@ -194,41 +195,41 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    height: height * .06,
+                    height: height * .05,
                     width: width * .3,
                     child: AppButton(
                         pressedFunction: _handleSignIn,
                         buttonIcon: SvgPicture.asset(
                           AppImages.google,
-                          height: height * .04,
-                          width: width * .7,
+                          height: height * .025,
+                          width: width * .5,
                         ),
                         buttonColor: AppColors.appWhite,
                         borderColor: AppColors.appBlack,
                         buttonText: ''),
                   ),
                   SizedBox(
-                    height: height * .06,
+                    height: height * .05,
                     width: width * .3,
                     child: AppButton(
                         pressedFunction: _handleSignIn,
                         buttonIcon: SvgPicture.asset(
                           AppImages.facebook,
-                          height: height * .04,
-                          width: width * .7,
+                          height: height * .025,
+                          width: width * .5,
                         ),
                         buttonColor: AppColors.primaryColorDark,
                         buttonText: ''),
                   ),
                   SizedBox(
-                    height: height * .06,
+                    height: height * .05,
                     width: width * .3,
                     child: AppButton(
                         pressedFunction: _handleSignIn,
                         buttonIcon: SvgPicture.asset(
                           AppImages.apple,
-                          height: height * .04,
-                          width: width * .7,
+                          height: height * .025,
+                          width: width * .5,
                         ),
                         buttonColor: AppColors.appBlack,
                         textColor: AppColors.appWhite,
@@ -255,7 +256,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   SizedBox(
                     width: width * .02,
                   ),
-                  const Text('or sign in with'),
+                  Text('or sign in with',
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.lightText)),
                   SizedBox(
                     width: width * .02,
                   ),
@@ -273,6 +277,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
               height: height * .025,
             ),
             AppInput(
+                textFieldHeight: 50,
                 textEditingController: emailController,
                 suffixIcon: inputError
                     ? Icon(
@@ -288,6 +293,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 label: "Email Address",
                 height: height),
             AppInput(
+                textFieldHeight: 50,
                 textEditingController: passwordController,
                 suffixIcon: inputError
                     ? Icon(
@@ -321,17 +327,18 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                       onTap: forgotPassword,
                       child: Text(
                         'Forgot Your Password?',
-                        style: TextStyle(color: AppColors.appBlack),
+                        style: Theme.of(context).textTheme.headline5,
                       )),
                 ],
               ),
             ),
             SizedBox(
-              height: height * .06,
+              height: height * .04,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: AppButton(
+                buttonHeight: 50,
                 pressedFunction: (emailController.text.isNotEmpty &&
                             passwordController.text.isNotEmpty) &&
                         buttonActive
@@ -361,13 +368,16 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 child: RichText(
                     text: TextSpan(
                         text: "Don’t have an account? ",
-                        style: TextStyle(color: AppColors.appBlack),
+                        style: Theme.of(context).textTheme.headline3,
                         children: [
                       TextSpan(
                           text: "Create an account!",
                           style: TextStyle(color: AppColors.appGreen)),
                     ])),
               ),
+            ),
+            SizedBox(
+              height: height * .07,
             ),
           ],
         ),

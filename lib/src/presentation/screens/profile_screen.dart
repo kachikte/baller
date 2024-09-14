@@ -5,6 +5,7 @@ import 'package:baller/src/config/app_routes.dart';
 import 'package:baller/src/presentation/providers/providers.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:baller/src/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,172 +56,134 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
-    final buttonActive = ref.watch(buttonProvider);
-    final inputError = ref.watch(inputErrorProvider);
-    final notification = ref.watch(notificationPopProvider);
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Stack(
           children: [
             Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: height * .3,
+                  height: AppHelperFunctions.dimensionHeight(height, 254),
                   decoration: BoxDecoration(
                     color: AppColors.primaryColor,
-                    // borderRadius: const BorderRadius.all(Radius.circular(12)),
                     image: const DecorationImage(
-                      image: AssetImage(AppImages.basketBallCourtJpg),
+                      image: AssetImage(AppImages.darkBackgroundJpg),
                       fit: BoxFit
                           .cover, // You can change this to BoxFit.contain, BoxFit.fill, etc.
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: height * .2,
-                ),
+                const SizedBox(height: 150),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: width * .03),
-                  // padding: EdgeInsets.symmetric(
-                  //     vertical: height * .02, horizontal: width * .03),
-                  height: height * .18,
-                  width: width,
+                  margin: EdgeInsets.symmetric(
+                      horizontal: AppHelperFunctions.dimensionWidth(width, 16)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  height: 164,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: AppColors.appBlack.withOpacity(.2), width: 1),
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(12))),
+                          const BorderRadius.all(Radius.circular(16))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: width * .6,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: 15,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Your metrics',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            // width: AppHelperFunctions.dimensionWidth(width, 85),
+                            child: Text(
+                              'Most played sport',
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                              style: Theme.of(context).textTheme.headline6,
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Text(
-                                'Your metrics',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: SizedBox(
-                                width: width * .7,
-                                child: const Text(
-                                  'Most played sport',
+                          ),
+                          Text(
+                            'Football',
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2!
+                                .copyWith(fontWeight: FontWeight.w700),
+                          ),
+                          SizedBox(
+                            height:
+                                AppHelperFunctions.dimensionHeight(height, 16),
+                          ),
+                          SizedBox(
+                            width: 167.25,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Games played',
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: true,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                  ),
+                                  style: Theme.of(context).textTheme.headline6,
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: SizedBox(
-                                width: width * .7,
-                                child: const Text(
-                                  'Football',
+                                Text(
+                                  'Minutes played',
                                   overflow: TextOverflow.ellipsis,
                                   softWrap: true,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 167.25,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                    '20',
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(fontWeight: FontWeight.w700),
                                   ),
                                 ),
-                              ),
+                                SizedBox(
+                                  child: Text(
+                                    '14,520',
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.appBlue),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: width * .65,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: width * .27,
-                                    child: const Text(
-                                      'Games played',
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: true,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w200,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: width * .27,
-                                    child: const Text(
-                                      'Minutes played',
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: true,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w200,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: width * .65,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: width * .27,
-                                    child: const Text(
-                                      '20',
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: true,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 22),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: width * .27,
-                                    child: Text(
-                                      '14,520',
-                                      overflow: TextOverflow.ellipsis,
-                                      softWrap: true,
-                                      style: TextStyle(
-                                          color: AppColors.appBlue,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 22),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                       SizedBox(
-                          width: width * .3,
-                          child: Image.asset(AppImages.ballersProf))
+                          // width: AppHelperFunctions.dimensionWidth(width, 126),
+                          height:
+                              AppHelperFunctions.dimensionHeight(height, 126),
+                          child: Image.asset(
+                            AppImages.ballersProfJpg,
+                            width: 126,
+                            height: 126,
+                          ))
                     ],
                   ),
                 ),
@@ -229,36 +192,31 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * .03),
-                  // padding: EdgeInsets.symmetric(
-                  //     vertical: height * .02, horizontal: width * .03),
-                  height: height * .18,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  height: 129,
                   width: width,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: AppColors.appBlack.withOpacity(.2), width: 1),
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(12))),
+                          const BorderRadius.all(Radius.circular(16))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'Transactions',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.appBlack.withOpacity(.5),
-                            fontSize: 17,
-                          ),
-                        ),
+                      Text(
+                        'Transactions',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: AppColors.lightText),
                       ),
                       Container(
                         width: width,
-                        height: height * .1,
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        padding: const EdgeInsets.all(15),
+                        height: 68,
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                             color: AppColors.primaryBackgroundColor
                                 .withOpacity(.1),
@@ -267,28 +225,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Image.asset(AppImages.ballersWallet),
-                            const Column(
+                            Image.asset(
+                              AppImages.ballersWallet,
+                              width: 24,
+                              height: 24,
+                            ),
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Payment history',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w700),
+                                  style: Theme.of(context).textTheme.headline3,
                                 ),
                                 Text(
                                   'View all transactions linked to bookings.',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 )
                               ],
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
-                              size: 25,
+                              size: 32,
                               color: AppColors.appBlack.withOpacity(.4),
                             )
                           ],
@@ -300,11 +258,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 SizedBox(
                   height: height * .03,
                 ),
+                //===========
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * .03),
-                  // padding: EdgeInsets.symmetric(
-                  //     vertical: height * .02, horizontal: width * .03),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                   width: width,
+                  height: 205,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: AppColors.appBlack.withOpacity(.2), width: 1),
@@ -313,122 +273,111 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'Security',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.appBlack.withOpacity(.5),
-                            fontSize: 17,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
+                      Text(
+                        'Security',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: AppColors.lightText),
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, AppRoutes.editPasswordScreen),
-                        child: Container(
-                          width: width,
-                          height: height * .1,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: AppColors.primaryBackgroundColor
-                                  .withOpacity(.1),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.asset(AppImages.lockIconPng),
-                              SizedBox(
-                                width: width * .55,
-                                child: const Column(
+                          onTap: () => Navigator.pushNamed(
+                              context, AppRoutes.editPasswordScreen),
+                          child: Container(
+                            width: width,
+                            height: 68,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryBackgroundColor
+                                    .withOpacity(.1),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  AppImages.lockIconPng,
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Password change',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w700),
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
                                     ),
                                     Text(
                                       'Change your password to secure account.',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
                                     )
                                   ],
                                 ),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 25,
-                                color: AppColors.appBlack.withOpacity(.4),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 32,
+                                  color: AppColors.appBlack.withOpacity(.4),
+                                )
+                              ],
+                            ),
+                          )),
                       const SizedBox(
                         height: 7,
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.of(context)
-                            .pushNamed(AppRoutes.editPinIntroScreen),
-                        child: Container(
-                          width: width,
-                          height: height * .1,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: AppColors.primaryBackgroundColor
-                                  .withOpacity(.1),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.asset(AppImages.ballersPin),
-                              SizedBox(
-                                width: width * .55,
-                                child: const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'PIN',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                    Text(
-                                      'Setup or Change PIN',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    )
-                                  ],
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(AppRoutes.editPinIntroScreen),
+                          child: Container(
+                            width: width,
+                            height: 68,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryBackgroundColor
+                                    .withOpacity(.1),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  AppImages.ballersPin,
+                                  width: 24,
+                                  height: 24,
                                 ),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 25,
-                                color: AppColors.appBlack.withOpacity(.4),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                                SizedBox(
+                                  width: width * .6,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'PIN',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline3,
+                                      ),
+                                      Text(
+                                        'Setup or Change PIN',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 32,
+                                  color: AppColors.appBlack.withOpacity(.4),
+                                )
+                              ],
+                            ),
+                          )),
                       const SizedBox(
                         height: 10,
                       ),
@@ -438,42 +387,38 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 SizedBox(
                   height: height * .03,
                 ),
+
                 GestureDetector(
                   onTap: () => Navigator.of(context)
                       .pushNamed(AppRoutes.notificationSettingScreen),
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: width * .03),
-                    // padding: EdgeInsets.symmetric(
-                    //     vertical: height * .02, horizontal: width * .03),
-                    height: height * .18,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    height: 129,
                     width: width,
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: AppColors.appBlack.withOpacity(.2),
                             width: 1),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(12))),
+                            const BorderRadius.all(Radius.circular(16))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text(
-                            'Notifications & Alerts',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.appBlack.withOpacity(.5),
-                              fontSize: 17,
-                            ),
-                          ),
+                        Text(
+                          'Notifications & Alerts',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText),
                         ),
                         Container(
                           width: width,
-                          height: height * .1,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          padding: const EdgeInsets.all(15),
+                          height: 68,
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                               color: AppColors.primaryBackgroundColor
                                   .withOpacity(.1),
@@ -482,28 +427,30 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(AppImages.notificationsPng),
-                              const Column(
+                              Image.asset(
+                                AppImages.notificationsPng,
+                                width: 24,
+                                height: 24,
+                              ),
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Notification settings',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style:
+                                        Theme.of(context).textTheme.headline3,
                                   ),
                                   Text(
                                     'Make changes to notification settings.',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                size: 25,
+                                size: 32,
                                 color: AppColors.appBlack.withOpacity(.4),
                               )
                             ],
@@ -521,37 +468,32 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       .pushNamed(AppRoutes.privacySettingsScreen),
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: width * .03),
-                    // padding: EdgeInsets.symmetric(
-                    //     vertical: height * .02, horizontal: width * .03),
-                    height: height * .18,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    height: 129,
                     width: width,
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: AppColors.appBlack.withOpacity(.2),
                             width: 1),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(12))),
+                            const BorderRadius.all(Radius.circular(16))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text(
-                            'Privacy',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.appBlack.withOpacity(.5),
-                              fontSize: 17,
-                            ),
-                          ),
+                        Text(
+                          'Privacy',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText),
                         ),
                         Container(
                           width: width,
-                          height: height * .1,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          padding: const EdgeInsets.all(15),
+                          height: 68,
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               color: AppColors.primaryBackgroundColor
                                   .withOpacity(.1),
@@ -560,28 +502,30 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(AppImages.ballersPrivacy),
-                              const Column(
+                              Image.asset(
+                                AppImages.ballersPrivacy,
+                                width: 24,
+                                height: 24,
+                              ),
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Privacy settings',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style:
+                                        Theme.of(context).textTheme.headline3,
                                   ),
                                   Text(
                                     'View and make changes to privacy settings',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                size: 25,
+                                size: 32,
                                 color: AppColors.appBlack.withOpacity(.4),
                               )
                             ],
@@ -596,9 +540,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * .03),
-                  // padding: EdgeInsets.symmetric(
-                  //     vertical: height * .02, horizontal: width * .03),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                   width: width,
+                  height: 205,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: AppColors.appBlack.withOpacity(.2), width: 1),
@@ -607,118 +552,111 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'Help & App',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.appBlack.withOpacity(.5),
-                            fontSize: 17,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
+                      Text(
+                        'Help & App',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: AppColors.lightText),
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, AppRoutes.editPasswordScreen),
-                        child: Container(
-                          width: width,
-                          height: height * .1,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: AppColors.primaryBackgroundColor
-                                  .withOpacity(.1),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.asset(AppImages.ballersSupport),
-                              SizedBox(
-                                width: width * .55,
-                                child: const Column(
+                          onTap: () => Navigator.pushNamed(
+                              context, AppRoutes.editPasswordScreen),
+                          child: Container(
+                            width: width,
+                            height: 68,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryBackgroundColor
+                                    .withOpacity(.1),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  AppImages.ballersSupport,
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Help & support',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w700),
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
                                     ),
                                     Text(
                                       'Get help from our support team.',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
                                     )
                                   ],
                                 ),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 25,
-                                color: AppColors.appBlack.withOpacity(.4),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 32,
+                                  color: AppColors.appBlack.withOpacity(.4),
+                                )
+                              ],
+                            ),
+                          )),
                       const SizedBox(
                         height: 7,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .1,
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            color: AppColors.primaryBackgroundColor
-                                .withOpacity(.1),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset(AppImages.ballersMore),
-                            SizedBox(
-                              width: width * .55,
-                              child: const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'About app',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                      GestureDetector(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(AppRoutes.editPinIntroScreen),
+                          child: Container(
+                            width: width,
+                            height: 68,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryBackgroundColor
+                                    .withOpacity(.1),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  AppImages.ballersMore,
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                SizedBox(
+                                  width: width * .6,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'About app',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline3,
+                                      ),
+                                      Text(
+                                        'More about the ballers app',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      )
+                                    ],
                                   ),
-                                  Text(
-                                    'More about the ballers app',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  )
-                                ],
-                              ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 32,
+                                  color: AppColors.appBlack.withOpacity(.4),
+                                )
+                              ],
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              size: 25,
-                              color: AppColors.appBlack.withOpacity(.4),
-                            )
-                          ],
-                        ),
-                      ),
+                          )),
                       const SizedBox(
                         height: 10,
                       ),
@@ -733,37 +671,32 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       .pushNamed(AppRoutes.notificationSettingScreen),
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: width * .03),
-                    // padding: EdgeInsets.symmetric(
-                    //     vertical: height * .02, horizontal: width * .03),
-                    height: height * .18,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    height: 129,
                     width: width,
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: AppColors.appBlack.withOpacity(.2),
                             width: 1),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(12))),
+                            const BorderRadius.all(Radius.circular(16))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text(
-                            'Legal',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.appBlack.withOpacity(.5),
-                              fontSize: 17,
-                            ),
-                          ),
+                        Text(
+                          'Legal',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: AppColors.lightText),
                         ),
                         Container(
                           width: width,
-                          height: height * .1,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          padding: const EdgeInsets.all(15),
+                          height: 68,
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               color: AppColors.primaryBackgroundColor
                                   .withOpacity(.1),
@@ -772,28 +705,30 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(AppImages.ballersLegal),
-                              const Column(
+                              Image.asset(
+                                AppImages.ballersLegal,
+                                width: 24,
+                                height: 24,
+                              ),
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Legal & terms',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w700),
+                                    style:
+                                        Theme.of(context).textTheme.headline3,
                                   ),
                                   Text(
                                     'Up-to-date legal terms and agreements',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   )
                                 ],
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                size: 25,
+                                size: 32,
                                 color: AppColors.appBlack.withOpacity(.4),
                               )
                             ],
@@ -803,20 +738,34 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: height * .1,
+                const SizedBox(
+                  height: 10,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * .03),
                   child: AppButton(
+                    buttonHeight: 48,
                     pressedFunction: () =>
                         Navigator.of(context).pushNamed(AppRoutes.signInScreen),
                     buttonColor: AppColors.appRed.withOpacity(.1),
                     textColor: AppColors.appRed,
                     buttonText: 'Log out',
                     buttonRadius: 10,
-                    borderColor: AppColors.appRed.withOpacity(.1),
                     buttonIcon: Image.asset(AppImages.ballersLogout),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * .03),
+                  child: AppButton(
+                    buttonHeight: 48,
+                    pressedFunction: () {},
+                    buttonColor: AppColors.appTransparent,
+                    textColor: AppColors.appBlack,
+                    buttonText: '©2024 V1.0',
+                    buttonRadius: 10,
                   ),
                 ),
                 const SizedBox(
@@ -825,14 +774,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ],
             ),
             Positioned(
-              top: height * .2,
-              left: 0,
+              top: AppHelperFunctions.dimensionHeight(height, 158),
+              left: AppHelperFunctions.dimensionWidth(width, 16),
+              right: AppHelperFunctions.dimensionWidth(width, 16),
               child: Container(
-                height: height * .27,
-                margin: EdgeInsets.symmetric(horizontal: width * .03),
+                height: 192,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                width: width * .95,
+                width: AppHelperFunctions.dimensionWidth(width, 396),
                 decoration: BoxDecoration(
                     color: AppColors.appWhite,
                     border: Border.all(
@@ -856,32 +805,29 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         'Bashiru Okala',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.appBlack,
-                          fontSize: 20,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline2!
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         'bashiruonuche@hotmail.com',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.appBlack.withOpacity(.5),
-                          fontSize: 17,
-                        ),
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                     SizedBox(
                       width: width * .45,
                       child: AppButton(
+                          buttonHeight: 32,
                           buttonIcon: Image.asset(AppImages.ballersEdit),
                           borderColor: AppColors.primaryBackgroundColor,
                           pressedFunction: () => Navigator.pushNamed(
                               context, AppRoutes.editProfileScreen),
                           buttonColor: AppColors.appWhite,
+                          buttonRadius: 16,
                           buttonText: 'Edit'),
                     ),
                   ],
@@ -889,11 +835,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
             ),
             Positioned(
-              top: 100,
+              top: 50,
               left: 10,
-              child: GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
-                  child: const Icon(Icons.arrow_back_ios_rounded)),
+              child: Row(
+                children: [
+                  GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Icon(
+                        Icons.arrow_back_ios_rounded,
+                        color: AppColors.appWhite,
+                        size: 16,
+                      )),
+                  Text(
+                    'My profile',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  )
+                ],
+              ),
             )
           ],
         ),

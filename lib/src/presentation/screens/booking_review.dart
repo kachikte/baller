@@ -50,14 +50,16 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                  text: "Booking - ",
-                  style: TextStyle(
-                      color: AppColors.appBlack,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 17)),
+                text: "Booking - ",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: AppColors.appBlack),
+              ),
               TextSpan(
-                  text: "Estate Basketball Court",
-                  style: TextStyle(color: AppColors.appBlack)),
+                text: "Estate Basketball Court",
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ])),
           ],
         ),
@@ -76,32 +78,24 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                   children: [
                     Container(
                       margin: const EdgeInsets.all(20),
-                      child: Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Review booking details",
-                              style: TextStyle(
-                                  color: AppColors.appBlack,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                            ),
-                            Text(
-                              "Confirm your booking details.",
-                              style: TextStyle(
-                                  color: AppColors.appBlack.withOpacity(.5)),
-                            )
-                          ],
-                        ),
+                      height: 51,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Review booking details",
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                          Text(
+                            "Confirm your booking details.",
+                            style: Theme.of(context).textTheme.headline3,
+                          )
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: width * .03),
-                      height: height * .3,
+                      height: 247,
                       width: width,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,13 +109,13 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                               child: Image.asset(
                                 AppImages.basketBallCourtPng,
                                 width: width,
-                                height: height * .12,
+                                height: 121,
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            height: height * .15,
+                            height: 126,
                             decoration: BoxDecoration(
                                 border: Border.all(
                                     color: AppColors.appBlack.withOpacity(.2),
@@ -129,7 +123,7 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(12))),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 20),
+                                horizontal: 10.0, vertical: 20),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -139,53 +133,47 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                                   children: [
                                     Text(
                                       'Arena',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w200,
-                                          fontSize: 13,
-                                          color: AppColors.appBlack),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
                                     ),
                                     Text(
                                       'Estate football Court',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15,
-                                          color: AppColors.appBlack),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                     const Expanded(child: SizedBox()),
                                     Text(
                                       'Reserved date',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w200,
-                                          fontSize: 13,
-                                          color: AppColors.appBlack),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
                                     ),
                                     Text(
                                       '14 February 2024',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15,
-                                          color: AppColors.appBlack),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Expanded(child: SizedBox()),
                                     Text(
                                       'Reserved time',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w200,
-                                          fontSize: 13,
-                                          color: AppColors.appBlack),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
                                     ),
                                     Text(
                                       '08:30 am - 10:30 am',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15,
-                                          color: AppColors.appBlack),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                   ],
                                 ),
@@ -195,17 +183,20 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       margin: const EdgeInsets.all(10),
-                      height: height * .25,
+                      height: 171,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: AppColors.appBlack.withOpacity(.2),
                               width: 1),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(12))),
+                              const BorderRadius.all(Radius.circular(16))),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20),
+                          horizontal: 16.0, vertical: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -215,40 +206,38 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                             children: [
                               Text(
                                 'Booking details',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: AppColors.lightText),
                               ),
                               const Expanded(child: SizedBox()),
                               Text(
                                 'Sport',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                               Text(
                                 'Basketball',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                        color: AppColors.appBlack,
+                                        fontWeight: FontWeight.w700),
                               ),
                               const Expanded(child: SizedBox()),
                               Text(
                                 'Ground',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                               Text(
                                 '5-a-side football',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                        color: AppColors.appBlack,
+                                        fontWeight: FontWeight.w700),
                               ),
                             ],
                           ),
@@ -266,40 +255,45 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                               const Expanded(child: SizedBox()),
                               Text(
                                 'Location',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                               Text(
                                 'Gwarinpa',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                        color: AppColors.appBlack,
+                                        fontWeight: FontWeight.w700),
                               ),
                               const Expanded(child: SizedBox()),
                               Text(
                                 'Expected players',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
-                              RichText(
-                                  text: TextSpan(children: [
-                                TextSpan(
-                                    text: "5 ",
-                                    style: TextStyle(
-                                        color: AppColors.appBlack,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15)),
-                                TextSpan(
-                                    text: " View details",
-                                    style: TextStyle(
-                                        color: AppColors.appBlue,
-                                        decoration: TextDecoration.underline)),
-                              ])),
+                              GestureDetector(
+                                onTap: () {},
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "5 ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: AppColors.appBlack,
+                                              fontWeight: FontWeight.w500)),
+                                  TextSpan(
+                                      text: " View details",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: AppColors.appBlue,
+                                              decoration:
+                                                  TextDecoration.underline)),
+                                ])),
+                              ),
                             ],
                           ),
                         ],
@@ -307,25 +301,27 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                     ),
                     Container(
                       margin: const EdgeInsets.all(10),
-                      height: height * .2,
+                      height: 143,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: AppColors.appBlack.withOpacity(.2),
                               width: 1),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(12))),
+                              const BorderRadius.all(Radius.circular(16))),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20),
+                          horizontal: 16.0, vertical: 16),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Requested services',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
-                                color: AppColors.appBlack),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2!
+                                .copyWith(
+                                    color: AppColors.lightText,
+                                    fontWeight: FontWeight.w500),
                           ),
                           const Expanded(child: SizedBox()),
                           SizedBox(
@@ -338,11 +334,8 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                                 return IntrinsicWidth(
                                   child: GestureDetector(
                                     child: Container(
-                                      margin: const EdgeInsets.only(
-                                        left: 10,
-                                      ),
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0, vertical: 6.0),
+                                          horizontal: 5.0, vertical: 6.0),
                                       decoration: BoxDecoration(
                                           color: AppColors.appBlue
                                               .withOpacity(.08),
@@ -354,9 +347,11 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                                       child: Center(
                                         child: Text(
                                           services[index],
-                                          style: TextStyle(
-                                              color: AppColors.appBlack,
-                                              fontSize: 12),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3!
+                                              .copyWith(
+                                                  color: AppColors.appBlack),
                                         ),
                                       ),
                                     ),
@@ -404,7 +399,7 @@ class _BookingReviewScreenState extends ConsumerState<BookingReviewScreen> {
                         pressedFunction: () => navigateToPayment(),
                         buttonColor: AppColors.appGreen,
                         textColor: AppColors.appWhite,
-                        buttonText: 'Confirm booking'),
+                        buttonText: 'Confirm'),
                   ),
                 ],
               ),

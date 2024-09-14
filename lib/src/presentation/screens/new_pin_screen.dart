@@ -5,6 +5,7 @@ import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/providers/providers.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pinput/pinput.dart';
@@ -48,6 +49,9 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
 
     showModalBottom() {
       return showModalBottomSheet(
+          showDragHandle: true,
+          isDismissible: true,
+          isScrollControlled: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
@@ -57,6 +61,7 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
           context: context,
           builder: (ctx) {
             return Container(
+              height: AppHelperFunctions.dimensionHeight(height, 567),
               margin: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -89,8 +94,9 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 10),
                     child: Center(
                       child: AppKeyContainer(
-                          width: width * .11,
-                          height: height * .055,
+                          radius: 15.24,
+                          width: 48,
+                          height: 48,
                           color: AppColors.appYellow,
                           widget: Image.asset(AppImages.ballersVerify)),
                     ),
@@ -100,10 +106,9 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Text(
+                    child: Text(
                       'Verify Account',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                   ),
                   SizedBox(
@@ -114,15 +119,15 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
                     child: Text(
                       'Provide the code sent your email',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(color: AppColors.appBlack.withOpacity(.5)),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Text(
+                    child: Text(
                       'bashiruonuche@hotmail.com',
                       textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   SizedBox(
@@ -143,8 +148,7 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
                     child: Text(
                       'Resend in ${sec}sec',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(color: AppColors.appBlack.withOpacity(.5)),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   SizedBox(
@@ -290,7 +294,10 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
         ),
         title: Text(
           isProfileEdit ? "PIN" : "Forgot PIN",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
@@ -319,8 +326,9 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             child: AppKeyContainer(
-                width: size.width * .11,
-                height: size.height * .055,
+                width: 48,
+                height: 48,
+                radius: 15.24,
                 color: AppColors.appGreen,
                 widget: Image.asset(AppImages.keyPng)),
           ),
@@ -328,14 +336,15 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               pinState == 0 ? 'Reset PIN' : 'Confirm New PIN',
-              style: const TextStyle(fontSize: 18),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: const Text(
+            child: Text(
               'Reset PIN to secure your account!',
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           Container(
@@ -455,18 +464,23 @@ class _NewPinScreenState extends ConsumerState<NewPinScreen> {
               ],
             ),
           ),
+          const Divider(
+            height: 3,
+          ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             child: AppButton(
+              buttonHeight: 53,
+              borderColor: AppColors.appBlack.withOpacity(.1),
               pressedFunction: (pin.length >= 4) ? setup : () {},
-              buttonColor: AppColors.appGreen,
+              buttonColor: AppColors.appTransparent,
               buttonText: pinState == 0 ? 'Proceed' : 'Set-up PIN',
               buttonRadius: 10,
-              textColor: AppColors.appWhite,
+              textColor: AppColors.appBlack,
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           )
         ],
       ),

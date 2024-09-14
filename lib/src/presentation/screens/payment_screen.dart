@@ -42,7 +42,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           context: context,
           builder: (ctx) {
             return Container(
-              height: height * .42,
+              height: 282,
               width: width,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -58,36 +58,40 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Make Transfer',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 17),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: AppColors.appBlack),
                               ),
                               Text(
-                                'Make transfer to details below',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 12),
+                                'SMake transfer to details below',
+                                style: Theme.of(context).textTheme.bodyText1,
                               )
                             ],
                           ),
                           CircleAvatar(
-                            backgroundColor: AppColors.primaryBackgroundColor
-                                .withOpacity(.1),
-                            radius: 14,
-                            child: Icon(
-                              size: 14,
-                              Icons.close,
-                              color: AppColors.appBlack,
+                            backgroundColor: AppColors.appBlack.withOpacity(.1),
+                            radius: 15,
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.appWhite,
+                              radius: 14,
+                              child: Icon(
+                                Icons.close,
+                                color: AppColors.appBlack,
+                                size: 14,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 30,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -104,13 +108,14 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                               children: [
                                 Text(
                                   'Bank name',
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.4)),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
-                                const Text(
+                                Text(
                                   'Access Bank',
-                                  style: TextStyle(fontSize: 17),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack),
                                 ),
                               ],
                             ),
@@ -133,13 +138,14 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                               children: [
                                 Text(
                                   'Account name',
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.4)),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
-                                const Text(
+                                Text(
                                   'Ballers',
-                                  style: TextStyle(fontSize: 17),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack),
                                 ),
                               ],
                             ),
@@ -162,18 +168,23 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                               children: [
                                 Text(
                                   'Account number',
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.4)),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
-                                const Text(
+                                Text(
                                   '5467546897',
-                                  style: TextStyle(fontSize: 17),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack),
                                 ),
                               ],
                             ),
                           ),
-                          Image.asset(AppImages.copyPng)
+                          Image.asset(
+                            AppImages.copyPng,
+                            height: 24,
+                            width: 24,
+                          )
                         ],
                       ),
                     ),
@@ -186,8 +197,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
+                          horizontal: 10, vertical: 10),
                       child: AppButton(
+                          buttonHeight: 53,
                           buttonRadius: 10,
                           pressedFunction: () => navigateToSuccessful(),
                           buttonColor: AppColors.appBlack,
@@ -219,11 +231,13 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             const SizedBox(
               width: 10,
             ),
-            Text("Payment",
-                style: TextStyle(
-                    color: AppColors.appBlack,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17)),
+            Text(
+              "Payment",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2!
+                  .copyWith(color: AppColors.appBlack),
+            ),
           ],
         ),
         elevation: 1,
@@ -234,7 +248,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: height * .72,
+              height: height * .75,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,7 +258,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     ),
                     Container(
                       margin: const EdgeInsets.all(10),
-                      height: height * .35,
+                      height: 270,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: AppColors.appBlack.withOpacity(.2),
@@ -254,7 +268,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       child: Column(
                         children: [
                           Container(
-                            height: height * .15,
+                            height: 133,
                             padding: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
                                 color: AppColors.appYellow.withOpacity(.03),
@@ -264,7 +278,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                                 borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(12),
                                     topRight: Radius.circular(12))),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
@@ -272,10 +286,26 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Subtotal'),
-                                    Text('Ground'),
-                                    Text('Services'),
-                                    Text('Fee')
+                                    Text(
+                                      'Subtotal',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                    Text(
+                                      'Ground',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                    Text(
+                                      'Services',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                    Text(
+                                      'Fee',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    )
                                   ],
                                 ),
                                 Column(
@@ -283,10 +313,28 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text('₦1,000'),
-                                    Text('₦1,000'),
-                                    Text('₦2,000'),
-                                    Text('₦100')
+                                    Text(
+                                      '₦1,000',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
+                                    ),
+                                    Text(
+                                      '₦1,000',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                    Text(
+                                      '₦2,000',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                    Text(
+                                      '₦100',
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    )
                                   ],
                                 )
                               ],
@@ -294,15 +342,22 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                           ),
                           Container(
                             // height: height * .1,
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text('% Discount code'),
+                                Text(
+                                  '% Discount code',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack),
+                                ),
                                 SizedBox(
-                                  width: width * .3,
+                                  // width: 92,
                                   child: AppButton(
-                                      buttonRadius: 30,
+                                      buttonRadius: 16,
+                                      buttonHeight: 37,
                                       pressedFunction: () {},
                                       buttonColor: AppColors.appBlack,
                                       textColor: AppColors.appWhite,
@@ -319,11 +374,20 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                           Container(
                             // height: height * .1,
                             padding: const EdgeInsets.all(15),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text('Total'),
-                                const Text('₦1,000'),
+                                Text(
+                                  'Total',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(color: AppColors.appBlack),
+                                ),
+                                Text(
+                                  '₦1,000',
+                                  style: Theme.of(context).textTheme.headline2,
+                                ),
                               ],
                             ),
                           ),
@@ -334,29 +398,32 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 15),
                       height: height * .04,
-                      child: const Text(
+                      child: Text(
                         'Payment options',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20),
+                        style: Theme.of(context).textTheme.headline2,
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: width * .03),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 20),
-                      height: height * .1,
+                          horizontal: 16, vertical: 16),
+                      height: 68,
                       width: width,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: AppColors.appBlack.withOpacity(.2),
                               width: 1),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(12))),
+                              const BorderRadius.all(Radius.circular(16))),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset(AppImages.debitPng),
+                          Image.asset(
+                            AppImages.debitPng,
+                            width: 32,
+                            height: 32,
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -366,18 +433,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                             children: [
                               Text(
                                 'Debit Card',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context).textTheme.headline3,
                               ),
                               Text(
                                 'Make payment with debit card',
-                                style: TextStyle(
-                                  color: AppColors.appBlack.withOpacity(.5),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                ),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ],
                           ),
@@ -392,20 +452,24 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: width * .03),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 20),
-                      height: height * .1,
+                          horizontal: 16, vertical: 16),
+                      height: 68,
                       width: width,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: AppColors.appBlack.withOpacity(.2),
                               width: 1),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(12))),
+                              const BorderRadius.all(Radius.circular(16))),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset(AppImages.transferPng),
+                          Image.asset(
+                            AppImages.transferPng,
+                            width: 32,
+                            height: 32,
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -415,18 +479,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                             children: [
                               Text(
                                 'Make Transfer',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
+                                style: Theme.of(context).textTheme.headline3,
                               ),
                               Text(
                                 'Transfer to an account provided',
-                                style: TextStyle(
-                                  color: AppColors.appBlack.withOpacity(.5),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                ),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ],
                           ),
@@ -444,7 +501,6 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             ),
             Container(
               width: width,
-              height: 70,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: AppColors.appWhite,
@@ -452,6 +508,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       top: BorderSide(
                           color: AppColors.primaryBackgroundColor, width: .5))),
               child: AppButton(
+                  buttonHeight: 53,
                   buttonRadius: 10,
                   borderColor: AppColors.primaryBackgroundColor.withOpacity(.3),
                   pressedFunction: () => showModalBottom(),

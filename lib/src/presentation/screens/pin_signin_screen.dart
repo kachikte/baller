@@ -31,7 +31,7 @@ class _PinSigninScreenState extends ConsumerState<PinSigninScreen> {
     final user = ref.watch(userProvider);
     final notification = ref.watch(notificationPopProvider);
 
-    double pinSpace = 7;
+    double pinSpace = 5;
     Size size = MediaQuery.of(context).size;
 
     void removeDigitPin() {
@@ -144,16 +144,18 @@ class _PinSigninScreenState extends ConsumerState<PinSigninScreen> {
                 ),
                 Text(
                   '${user?.lastName} ${user?.firstName}',
-                  style: const TextStyle(fontSize: 18),
+                  style: Theme.of(context).textTheme.headline2,
+                  // style: const TextStyle(fontSize: 18),
                 ),
               ],
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: const Text(
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            child: Text(
               'Enter PIN below',
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           Container(
@@ -263,7 +265,10 @@ class _PinSigninScreenState extends ConsumerState<PinSigninScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AppPinNumberWidget(
-                    func: forgotCode, number: "Forgot\nCode?", textSize: 12),
+                    isNumber: false,
+                    func: forgotCode,
+                    number: "Forgot\nCode?",
+                    textSize: 12),
                 AppPinNumberWidget(
                   func: () => insertPin("0"),
                   number: "0",
@@ -276,8 +281,12 @@ class _PinSigninScreenState extends ConsumerState<PinSigninScreen> {
           ),
           Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
-              child:
-                  GestureDetector(onTap: logout, child: const Text('Sign Out')))
+              child: GestureDetector(
+                  onTap: logout,
+                  child: Text(
+                    'Sign Out',
+                    style: Theme.of(context).textTheme.headline5,
+                  )))
         ],
       ),
     );

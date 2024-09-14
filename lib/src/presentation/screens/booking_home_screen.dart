@@ -15,8 +15,8 @@ class BookingHomeScreen extends ConsumerStatefulWidget {
 }
 
 class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
-  navigateToArenaDetails() {
-    Navigator.pushNamed(context, AppRoutes.arenaDetailsScreen);
+  navigateToBookingDetails() {
+    Navigator.pushNamed(context, AppRoutes.bookingDetailScreen);
   }
 
   TextEditingController searchController = TextEditingController();
@@ -37,7 +37,7 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
           children: [
             Text(
               'Bookings',
-              style: TextStyle(color: AppColors.appBlack, fontSize: 25),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ],
         ),
@@ -75,8 +75,8 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
               ),
               Container(
                   width: width,
-                  height: height * .05,
-                  padding: const EdgeInsets.all(2),
+                  height: 45,
+                  padding: const EdgeInsets.all(4),
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
@@ -92,7 +92,7 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
                                 .read(bookingsTabProvider.notifier)
                                 .state = Constants.upcomingBookings,
                             child: Container(
-                                height: height * .06,
+                                height: 41,
                                 decoration: BoxDecoration(
                                     color:
                                         tabSelect == Constants.upcomingBookings
@@ -100,9 +100,13 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
                                             : AppColors.appTransparent,
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10))),
-                                child: const Center(
+                                child: Center(
                                     child: Text('Upcoming',
-                                        style: TextStyle(fontSize: 12)))),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!
+                                            .copyWith(
+                                                color: AppColors.lightText)))),
                           ),
                         ),
                         Expanded(
@@ -111,7 +115,7 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
                                 .read(bookingsTabProvider.notifier)
                                 .state = Constants.completedBookings,
                             child: Container(
-                                height: height * .06,
+                                height: 41,
                                 decoration: BoxDecoration(
                                     color:
                                         tabSelect == Constants.completedBookings
@@ -119,18 +123,25 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
                                             : AppColors.appTransparent,
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10))),
-                                child: const Center(
+                                child: Center(
                                     child: Text('Completed',
-                                        style: TextStyle(fontSize: 12)))),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!
+                                            .copyWith(
+                                                color: AppColors.lightText)))),
                           ),
                         ),
                       ])),
               SizedBox(
                 width: width,
                 child: AppInput(
+                    textFieldHeight: 64,
                     textEditingController: searchController,
                     icon: Image.asset(
                       AppImages.ballersSearch,
+                      height: 20,
+                      width: 20,
                     ),
                     hintText: "Search booking ID or arena name",
                     errorText: "",
@@ -138,586 +149,628 @@ class _BookingHomeScreenState extends ConsumerState<BookingHomeScreen> {
                     label: "",
                     height: height),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: width * .03),
-                height: height * .27,
-                width: width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 15),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: AppColors.appBlack.withOpacity(.2),
-                            width: 1),
-                        borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(12),
-                            topLeft: Radius.circular(12)),
-                      ),
-                      height: height * .13,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
-                            child: Image.asset(
-                              AppImages.basketBallCourtPng,
-                              width: width * .23,
-                              height: height * .11,
-                              fit: BoxFit.fill,
+              GestureDetector(
+                onTap: () => navigateToBookingDetails(),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * .03),
+                  height: 210,
+                  width: width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: AppColors.appBlack.withOpacity(.2),
+                              width: 1),
+                          borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(16),
+                              topLeft: Radius.circular(16)),
+                        ),
+                        height: 100,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)),
+                              child: Image.asset(
+                                AppImages.basketBallCourtPng,
+                                width: 72,
+                                height: 72,
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Estate football Court',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 15),
-                              ),
-                              Text(
-                                'Gwarinpa, Nigeria',
-                                style: TextStyle(
-                                    color: AppColors.appBlack.withOpacity(.5),
-                                    fontSize: 12),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(7),
-                                    decoration: BoxDecoration(
-                                        color: tabSelect ==
-                                                Constants.upcomingBookings
-                                            ? AppColors.appYellow
-                                                .withOpacity(.1)
-                                            : AppColors.appBlack,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Text(
-                                      tabSelect == Constants.upcomingBookings
-                                          ? 'Upcoming'
-                                          : 'Completed',
-                                      style: TextStyle(
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Estate football Court',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  'Gwarinpa, Nigeria',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 28,
+                                      width: 69,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
                                           color: tabSelect ==
                                                   Constants.upcomingBookings
                                               ? AppColors.appYellow
-                                              : AppColors.appWhite),
+                                                  .withOpacity(.1)
+                                              : AppColors.appBlack,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Text(
+                                        tabSelect == Constants.upcomingBookings
+                                            ? 'Upcoming'
+                                            : 'Completed',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                                color: tabSelect ==
+                                                        Constants
+                                                            .upcomingBookings
+                                                    ? AppColors.appYellow
+                                                    : AppColors.appWhite),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(7),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.primaryBackgroundColor
-                                            .withOpacity(.1),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Text(
-                                      '2354673',
-                                      style:
-                                          TextStyle(color: AppColors.appBlack),
+                                    const SizedBox(
+                                      width: 8,
                                     ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                          const Expanded(child: SizedBox()),
-                          const Icon(Icons.more_horiz)
-                        ],
+                                    Container(
+                                      height: 28,
+                                      width: 69,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
+                                          color: AppColors
+                                              .primaryBackgroundColor
+                                              .withOpacity(.1),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Text(
+                                        '2354673',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            const Expanded(child: SizedBox()),
+                            const Icon(
+                              Icons.more_horiz,
+                              size: 18,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: height * .12,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(12),
-                              bottomRight: Radius.circular(12)),
-                          color:
-                              AppColors.primaryBackgroundColor.withOpacity(.1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Sport',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                'Basketball',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Text(
-                                'Reserved time',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                '08:30 am - 10:30 am',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Location',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              SizedBox(
-                                width: width * .3,
-                                child: Text(
-                                  'Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108',
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: true,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: AppColors.appBlack),
+                      Container(
+                        height: 110,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(16),
+                                bottomRight: Radius.circular(16)),
+                            color: AppColors.primaryBackgroundColor
+                                .withOpacity(.1)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sport',
+                                  style: Theme.of(context).textTheme.headline6,
                                 ),
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Text(
-                                'Reserved date',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                '14 Feb ‘24',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  'Basketball',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  'Reserved time',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                Text(
+                                  '08:30 am - 10:30 am',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Location',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                SizedBox(
+                                  width: width * .3,
+                                  child: Text(
+                                    'Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108',
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3!
+                                        .copyWith(
+                                            color: AppColors.appBlack,
+                                            fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  'Reserved date',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                Text(
+                                  '14 Feb ‘24',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: width * .03),
-                height: height * .27,
-                width: width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 15),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: AppColors.appBlack.withOpacity(.2),
-                            width: 1),
-                        borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(12),
-                            topLeft: Radius.circular(12)),
-                      ),
-                      height: height * .13,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
-                            child: Image.asset(
-                              AppImages.basketBallCourtPng,
-                              width: width * .23,
-                              height: height * .11,
-                              fit: BoxFit.fill,
+              const SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                onTap: () => navigateToBookingDetails(),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * .03),
+                  height: 210,
+                  width: width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: AppColors.appBlack.withOpacity(.2),
+                              width: 1),
+                          borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(16),
+                              topLeft: Radius.circular(16)),
+                        ),
+                        height: 100,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)),
+                              child: Image.asset(
+                                AppImages.basketBallCourtPng,
+                                width: 72,
+                                height: 72,
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Estate football Court',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 15),
-                              ),
-                              Text(
-                                'Gwarinpa, Nigeria',
-                                style: TextStyle(
-                                    color: AppColors.appBlack.withOpacity(.5),
-                                    fontSize: 12),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(7),
-                                    decoration: BoxDecoration(
-                                        color: tabSelect ==
-                                                Constants.upcomingBookings
-                                            ? AppColors.appYellow
-                                                .withOpacity(.1)
-                                            : AppColors.appBlack,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Text(
-                                      tabSelect == Constants.upcomingBookings
-                                          ? 'Upcoming'
-                                          : 'Completed',
-                                      style: TextStyle(
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Estate football Court',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  'Gwarinpa, Nigeria',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 28,
+                                      width: 69,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
                                           color: tabSelect ==
                                                   Constants.upcomingBookings
                                               ? AppColors.appYellow
-                                              : AppColors.appWhite),
+                                                  .withOpacity(.1)
+                                              : AppColors.appBlack,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Text(
+                                        tabSelect == Constants.upcomingBookings
+                                            ? 'Upcoming'
+                                            : 'Completed',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                                color: tabSelect ==
+                                                        Constants
+                                                            .upcomingBookings
+                                                    ? AppColors.appYellow
+                                                    : AppColors.appWhite),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(7),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.primaryBackgroundColor
-                                            .withOpacity(.1),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Text(
-                                      '2354673',
-                                      style:
-                                          TextStyle(color: AppColors.appBlack),
+                                    const SizedBox(
+                                      width: 8,
                                     ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                          const Expanded(child: SizedBox()),
-                          const Icon(Icons.more_horiz)
-                        ],
+                                    Container(
+                                      height: 28,
+                                      width: 69,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
+                                          color: AppColors
+                                              .primaryBackgroundColor
+                                              .withOpacity(.1),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Text(
+                                        '2354673',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            const Expanded(child: SizedBox()),
+                            const Icon(
+                              Icons.more_horiz,
+                              size: 18,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: height * .12,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(12),
-                              bottomRight: Radius.circular(12)),
-                          color:
-                              AppColors.primaryBackgroundColor.withOpacity(.1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Sport',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                'Basketball',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Text(
-                                'Reserved time',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                '08:30 am - 10:30 am',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Location',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              SizedBox(
-                                width: width * .3,
-                                child: Text(
-                                  'Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108',
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: true,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: AppColors.appBlack),
+                      Container(
+                        height: 110,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(16),
+                                bottomRight: Radius.circular(16)),
+                            color: AppColors.primaryBackgroundColor
+                                .withOpacity(.1)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sport',
+                                  style: Theme.of(context).textTheme.headline6,
                                 ),
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Text(
-                                'Reserved date',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                '14 Feb ‘24',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  'Basketball',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  'Reserved time',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                Text(
+                                  '08:30 am - 10:30 am',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Location',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                SizedBox(
+                                  width: width * .3,
+                                  child: Text(
+                                    'Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108',
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3!
+                                        .copyWith(
+                                            color: AppColors.appBlack,
+                                            fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  'Reserved date',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                Text(
+                                  '14 Feb ‘24',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: width * .03),
-                height: height * .27,
-                width: width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 15),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: AppColors.appBlack.withOpacity(.2),
-                            width: 1),
-                        borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(12),
-                            topLeft: Radius.circular(12)),
-                      ),
-                      height: height * .13,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12)),
-                            child: Image.asset(
-                              AppImages.basketBallCourtPng,
-                              width: width * .23,
-                              height: height * .11,
-                              fit: BoxFit.fill,
+              const SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                onTap: () => navigateToBookingDetails(),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * .03),
+                  height: 210,
+                  width: width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: AppColors.appBlack.withOpacity(.2),
+                              width: 1),
+                          borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(16),
+                              topLeft: Radius.circular(16)),
+                        ),
+                        height: 100,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)),
+                              child: Image.asset(
+                                AppImages.basketBallCourtPng,
+                                width: 72,
+                                height: 72,
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Estate football Court',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 15),
-                              ),
-                              Text(
-                                'Gwarinpa, Nigeria',
-                                style: TextStyle(
-                                    color: AppColors.appBlack.withOpacity(.5),
-                                    fontSize: 12),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(7),
-                                    decoration: BoxDecoration(
-                                        color: tabSelect ==
-                                                Constants.upcomingBookings
-                                            ? AppColors.appYellow
-                                                .withOpacity(.1)
-                                            : AppColors.appBlack,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Text(
-                                      tabSelect == Constants.upcomingBookings
-                                          ? 'Upcoming'
-                                          : 'Completed',
-                                      style: TextStyle(
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Estate football Court',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  'Gwarinpa, Nigeria',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 28,
+                                      width: 69,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
                                           color: tabSelect ==
                                                   Constants.upcomingBookings
                                               ? AppColors.appYellow
-                                              : AppColors.appWhite),
+                                                  .withOpacity(.1)
+                                              : AppColors.appBlack,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Text(
+                                        tabSelect == Constants.upcomingBookings
+                                            ? 'Upcoming'
+                                            : 'Completed',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .copyWith(
+                                                color: tabSelect ==
+                                                        Constants
+                                                            .upcomingBookings
+                                                    ? AppColors.appYellow
+                                                    : AppColors.appWhite),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(7),
-                                    decoration: BoxDecoration(
-                                        color: AppColors.primaryBackgroundColor
-                                            .withOpacity(.1),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Text(
-                                      '2354673',
-                                      style:
-                                          TextStyle(color: AppColors.appBlack),
+                                    const SizedBox(
+                                      width: 8,
                                     ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                          const Expanded(child: SizedBox()),
-                          const Icon(Icons.more_horiz)
-                        ],
+                                    Container(
+                                      height: 28,
+                                      width: 69,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
+                                          color: AppColors
+                                              .primaryBackgroundColor
+                                              .withOpacity(.1),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(8))),
+                                      child: Text(
+                                        '2354673',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            const Expanded(child: SizedBox()),
+                            const Icon(
+                              Icons.more_horiz,
+                              size: 18,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: height * .12,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(12),
-                              bottomRight: Radius.circular(12)),
-                          color:
-                              AppColors.primaryBackgroundColor.withOpacity(.1)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Sport',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                'Basketball',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Text(
-                                'Reserved time',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                '08:30 am - 10:30 am',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Location',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              SizedBox(
-                                width: width * .3,
-                                child: Text(
-                                  'Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108',
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: true,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15,
-                                      color: AppColors.appBlack),
+                      Container(
+                        height: 110,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(16),
+                                bottomRight: Radius.circular(16)),
+                            color: AppColors.primaryBackgroundColor
+                                .withOpacity(.1)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sport',
+                                  style: Theme.of(context).textTheme.headline6,
                                 ),
-                              ),
-                              const Expanded(child: SizedBox()),
-                              Text(
-                                'Reserved date',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 13,
-                                    color: AppColors.appBlack),
-                              ),
-                              Text(
-                                '14 Feb ‘24',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                    color: AppColors.appBlack),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  'Basketball',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  'Reserved time',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                Text(
+                                  '08:30 am - 10:30 am',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Location',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                SizedBox(
+                                  width: width * .3,
+                                  child: Text(
+                                    'Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108',
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3!
+                                        .copyWith(
+                                            color: AppColors.appBlack,
+                                            fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                const Expanded(child: SizedBox()),
+                                Text(
+                                  'Reserved date',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                Text(
+                                  '14 Feb ‘24',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          color: AppColors.appBlack,
+                                          fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

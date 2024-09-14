@@ -5,6 +5,7 @@ import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/providers/providers.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:baller/src/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,6 +42,9 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
 
     showModalBottom() {
       return showModalBottomSheet(
+          showDragHandle: true,
+          isDismissible: true,
+          isScrollControlled: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
@@ -50,6 +54,7 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
           context: context,
           builder: (ctx) {
             return Container(
+              height: AppHelperFunctions.dimensionHeight(height, 567),
               margin: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -82,8 +87,9 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 10),
                     child: Center(
                       child: AppKeyContainer(
-                          width: width * .11,
-                          height: height * .055,
+                          radius: 15.24,
+                          width: 48,
+                          height: 48,
                           color: AppColors.appYellow,
                           widget: Image.asset(AppImages.ballersVerify)),
                     ),
@@ -93,10 +99,9 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Text(
+                    child: Text(
                       'Verify Account',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                   ),
                   SizedBox(
@@ -107,15 +112,15 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                     child: Text(
                       'Provide the code sent your email',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(color: AppColors.appBlack.withOpacity(.5)),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Text(
+                    child: Text(
                       'bashiruonuche@hotmail.com',
                       textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   SizedBox(
@@ -136,8 +141,7 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                     child: Text(
                       'Resend in ${sec}sec',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(color: AppColors.appBlack.withOpacity(.5)),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   SizedBox(
@@ -215,11 +219,15 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
         ),
         title: Text(
           "Password Change",
-          style: TextStyle(color: AppColors.appBlack),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(color: AppColors.appBlack),
         ),
         elevation: 1,
       ),
-      body: SingleChildScrollView(
+      body: SizedBox(
+        height: height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -245,9 +253,10 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                   )
                 : const SizedBox(),
             SizedBox(
-              height: height * .05,
+              height: height * .02,
             ),
             AppInput(
+                textFieldHeight: 64,
                 textEditingController: oldPasswordController,
                 suffixIcon: inputError
                     ? Icon(
@@ -273,6 +282,7 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                 label: "Old Password",
                 height: height),
             AppInput(
+                textFieldHeight: 64,
                 textEditingController: passwordController,
                 suffixIcon: inputError
                     ? Icon(
@@ -298,6 +308,7 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                 label: "New Password",
                 height: height),
             AppInput(
+                textFieldHeight: 64,
                 textEditingController: passwordControllerB,
                 suffixIcon: inputError
                     ? Icon(
@@ -322,15 +333,13 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                 width: width,
                 label: "Confirm New Password",
                 height: height),
-            SizedBox(
-              height: height * .3,
-            ),
+            const Expanded(child: SizedBox()),
             Divider(
               color: AppColors.appBlack.withOpacity((.4)),
               height: 3,
             ),
             SizedBox(
-              height: height * .02,
+              height: height * .03,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -353,6 +362,9 @@ class _EditPasswordScreenState extends ConsumerState<EditPasswordScreen> {
                     ? AppColors.appWhite
                     : AppColors.primaryBackgroundColor,
               ),
+            ),
+            SizedBox(
+              height: height * .05,
             ),
           ],
         ),

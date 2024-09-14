@@ -2,6 +2,7 @@ import 'package:baller/src/config/config.dart';
 import 'package:baller/src/presentation/widgets/time_slot_widget.dart';
 import 'package:baller/src/presentation/widgets/widgets.dart';
 import 'package:baller/src/utils/app_colors.dart';
+import 'package:baller/src/utils/app_helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -90,7 +91,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
           context: context,
           builder: (ctx) {
             return Container(
-              height: height * .55,
+              height: AppHelperFunctions.dimensionHeight(height, 600),
               width: width,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -106,29 +107,33 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Equipment Rental',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 15),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: AppColors.appBlack),
                               ),
                               Text(
                                 'Select the options below.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 12),
+                                style: Theme.of(context).textTheme.bodyText1,
                               )
                             ],
                           ),
                           CircleAvatar(
-                            backgroundColor: AppColors.primaryBackgroundColor
-                                .withOpacity(.1),
-                            radius: 14,
-                            child: Icon(
-                              size: 14,
-                              Icons.close,
-                              color: AppColors.appBlack,
+                            backgroundColor: AppColors.appBlack.withOpacity(.1),
+                            radius: 15,
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.appWhite,
+                              radius: 14,
+                              child: Icon(
+                                Icons.close,
+                                color: AppColors.appBlack,
+                                size: 14,
+                              ),
                             ),
                           ),
                         ],
@@ -139,13 +144,18 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text('Total'), Text('₦0.00')],
+                        children: [
+                          Text('Total',
+                              style: Theme.of(context).textTheme.headline3),
+                          Text('₦0.00',
+                              style: Theme.of(context).textTheme.headline2)
+                        ],
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Divider(
                       color: AppColors.appBlack.withOpacity((.4)),
@@ -161,22 +171,20 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            // width: width * .45,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Jersey Rental',
-                                  style: TextStyle(fontWeight: FontWeight.w700),
-                                ),
-                                Text(
-                                  'NGN 200',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Jersey Rental',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.appBlack)),
+                              Text('NGN 200',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ],
                           ),
                           SizedBox(
                             // width: width * .25,
@@ -194,9 +202,11 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                           horizontal: 10),
                                       child: Text(
                                         '$_counter',
-                                        style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2!
+                                            .copyWith(
+                                                color: AppColors.appBlack),
                                       ),
                                     ),
                                     _buildCounterButton(
@@ -216,22 +226,20 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            // width: width * .45,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Jersey Rental',
-                                  style: TextStyle(fontWeight: FontWeight.w700),
-                                ),
-                                Text(
-                                  'NGN 200',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Goalkeeper Gloves Rental',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.appBlack)),
+                              Text('Free',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ],
                           ),
                           SizedBox(
                             // width: width * .25,
@@ -249,9 +257,11 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                           horizontal: 10),
                                       child: Text(
                                         '$_counter',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2!
+                                            .copyWith(
+                                                color: AppColors.appBlack),
                                       ),
                                     ),
                                     _buildCounterButton(
@@ -271,22 +281,20 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            // width: width * .45,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Jersey Rental',
-                                  style: TextStyle(fontWeight: FontWeight.w700),
-                                ),
-                                Text(
-                                  'NGN 200',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Shin Guards Rental',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.appBlack)),
+                              Text('NGN 200',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ],
                           ),
                           SizedBox(
                             // width: width * .25,
@@ -304,9 +312,11 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                           horizontal: 10),
                                       child: Text(
                                         '$_counter',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2!
+                                            .copyWith(
+                                                color: AppColors.appBlack),
                                       ),
                                     ),
                                     _buildCounterButton(
@@ -326,22 +336,20 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            // width: width * .45,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Jersey Rental',
-                                  style: TextStyle(fontWeight: FontWeight.w700),
-                                ),
-                                Text(
-                                  'NGN 200',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Soccer Boot Rental',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.appBlack)),
+                              Text('NGN 200',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ],
                           ),
                           SizedBox(
                             // width: width * .25,
@@ -359,9 +367,11 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                           horizontal: 10),
                                       child: Text(
                                         '$_counter',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2!
+                                            .copyWith(
+                                                color: AppColors.appBlack),
                                       ),
                                     ),
                                     _buildCounterButton(
@@ -375,7 +385,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Divider(
                       color: AppColors.appBlack.withOpacity((.4)),
@@ -390,6 +400,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                           SizedBox(
                             width: width * .45,
                             child: AppButton(
+                                buttonHeight: 53,
                                 buttonRadius: 10,
                                 borderColor: AppColors.primaryBackgroundColor,
                                 pressedFunction: () {},
@@ -399,6 +410,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                           SizedBox(
                             width: width * .45,
                             child: AppButton(
+                                buttonHeight: 53,
                                 buttonRadius: 10,
                                 pressedFunction: () {},
                                 buttonColor: AppColors.appBlack,
@@ -436,14 +448,16 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                  text: "Booking - ",
-                  style: TextStyle(
-                      color: AppColors.appBlack,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 17)),
+                text: "Booking - ",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: AppColors.appBlack),
+              ),
               TextSpan(
-                  text: "Estate Basketball Court",
-                  style: TextStyle(color: AppColors.appBlack)),
+                text: "Estate Basketball Court",
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ])),
           ],
         ),
@@ -455,27 +469,23 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: height * .51,
+              height: height - 240,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: const EdgeInsets.all(20),
+                      margin: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              child: Image.asset(
-                                fit: BoxFit.fill,
-                                AppImages.tilesPng,
-                                width: 30,
-                                height: 30,
-                              ),
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            child: Image.asset(
+                              fit: BoxFit.fill,
+                              AppImages.tilesPng,
+                              width: 41,
+                              height: 41,
                             ),
                           ),
                           const SizedBox(
@@ -489,46 +499,37 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                   children: [
                                     Text(
                                       "Which Ground?",
-                                      style: TextStyle(
-                                          color: AppColors.appBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                     const Icon(
                                       Icons.info_outline,
-                                      size: 14,
+                                      size: 16,
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "You can select just one ground.",
                                   // "Terfa76!🎉",
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.5)),
+                                  style: Theme.of(context).textTheme.headline3,
                                 )
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: Image.asset(
-                              color: AppColors.appYellow,
-                              fit: BoxFit.fill,
-                              AppImages.cautionPng,
-                              width: 25,
-                              height: 25,
-                            ),
+                          Image.asset(
+                            color: AppColors.appYellow,
+                            fit: BoxFit.fill,
+                            AppImages.cautionPng,
+                            width: 20,
+                            height: 20,
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     SizedBox(
-                      height: height * .24,
+                      height: 162,
                       child: ListView.builder(
                           itemBuilder: (ctx, index) {
                             return GestureDetector(
@@ -538,6 +539,9 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                           itemCount: 2,
                           scrollDirection: Axis.horizontal),
                     ),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Divider(
                       thickness: .5,
                       color: AppColors.appBlack.withOpacity(.4),
@@ -545,22 +549,17 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       endIndent: 20,
                     ),
                     Container(
-                      margin:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                      margin: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              child: Image.asset(
-                                fit: BoxFit.fill,
-                                AppImages.calendarPng,
-                                width: 30,
-                                height: 30,
-                              ),
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            child: Image.asset(
+                              fit: BoxFit.fill,
+                              AppImages.calendarPng,
+                              width: 41,
+                              height: 41,
                             ),
                           ),
                           const SizedBox(
@@ -574,36 +573,30 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                   children: [
                                     Text(
                                       "What date?",
-                                      style: TextStyle(
-                                          color: AppColors.appBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                     const Icon(
                                       Icons.info_outline,
-                                      size: 14,
+                                      size: 16,
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "You can select just one date..",
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.5)),
+                                  style: Theme.of(context).textTheme.headline3,
                                 )
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: Image.asset(
-                              color: AppColors.appYellow,
-                              fit: BoxFit.fill,
-                              AppImages.cautionPng,
-                              width: 25,
-                              height: 25,
-                            ),
+                          Image.asset(
+                            color: AppColors.appYellow,
+                            fit: BoxFit.fill,
+                            AppImages.cautionPng,
+                            width: 20,
+                            height: 20,
                           ),
                         ],
                       ),
@@ -611,6 +604,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                     GestureDetector(
                       onTap: () => showCustomDatePicker(context),
                       child: AppInput(
+                          textFieldHeight: 64,
                           enabled: false,
                           textEditingController: dateController,
                           icon: const Icon(Icons.date_range),
@@ -627,21 +621,17 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       endIndent: 20,
                     ),
                     Container(
-                      margin: const EdgeInsets.all(20),
+                      margin: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              child: Image.asset(
-                                fit: BoxFit.fill,
-                                AppImages.clockPng,
-                                width: 30,
-                                height: 30,
-                              ),
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            child: Image.asset(
+                              fit: BoxFit.fill,
+                              AppImages.clockPng,
+                              width: 41,
+                              height: 41,
                             ),
                           ),
                           const SizedBox(
@@ -655,36 +645,30 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                   children: [
                                     Text(
                                       "What Time?",
-                                      style: TextStyle(
-                                          color: AppColors.appBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                     const Icon(
                                       Icons.info_outline,
-                                      size: 14,
+                                      size: 16,
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "You can select more than one timeframe.",
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.5)),
+                                  style: Theme.of(context).textTheme.headline3,
                                 )
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: Image.asset(
-                              color: AppColors.appYellow,
-                              fit: BoxFit.fill,
-                              AppImages.cautionPng,
-                              width: 25,
-                              height: 25,
-                            ),
+                          Image.asset(
+                            color: AppColors.appYellow,
+                            fit: BoxFit.fill,
+                            AppImages.cautionPng,
+                            width: 20,
+                            height: 20,
                           ),
                         ],
                       ),
@@ -692,13 +676,19 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    SizedBox(
+                    Container(
+                      margin: const EdgeInsets.only(left: 10),
                       height: height * .12,
-                      child: ListView.builder(
+                      child: ListView.separated(
                           itemBuilder: (ctx, index) {
                             return GestureDetector(
                                 onTap: showModalBottom,
                                 child: const TimeSlotWidget());
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              width: 16,
+                            );
                           },
                           itemCount: 2,
                           scrollDirection: Axis.horizontal),
@@ -710,22 +700,17 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       endIndent: 20,
                     ),
                     Container(
-                      margin:
-                          const EdgeInsets.only(left: 20, right: 20, top: 20),
+                      margin: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              child: Image.asset(
-                                fit: BoxFit.fill,
-                                AppImages.multiplePersonPng,
-                                width: 30,
-                                height: 30,
-                              ),
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            child: Image.asset(
+                              fit: BoxFit.fill,
+                              AppImages.multiplePersonPng,
+                              width: 41,
+                              height: 41,
                             ),
                           ),
                           const SizedBox(
@@ -739,41 +724,36 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                   children: [
                                     Text(
                                       "Who are the players?",
-                                      style: TextStyle(
-                                          color: AppColors.appBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                     const Icon(
                                       Icons.info_outline,
-                                      size: 14,
+                                      size: 16,
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "Provide player names to specify the number.",
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.5)),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 )
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: Image.asset(
-                              color: AppColors.appYellow,
-                              fit: BoxFit.fill,
-                              AppImages.cautionPng,
-                              width: 25,
-                              height: 25,
-                            ),
+                          Image.asset(
+                            color: AppColors.appYellow,
+                            fit: BoxFit.fill,
+                            AppImages.cautionPng,
+                            width: 20,
+                            height: 20,
                           ),
                         ],
                       ),
                     ),
                     AppInput(
+                        textFieldHeight: 64,
                         textEditingController: playerController,
                         icon: const Icon(Icons.person),
                         hintText: "Enter player name",
@@ -788,22 +768,17 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       endIndent: 20,
                     ),
                     Container(
-                      margin: const EdgeInsets.only(
-                          left: 20, right: 20, top: 20, bottom: 10),
+                      margin: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              child: Image.asset(
-                                fit: BoxFit.fill,
-                                AppImages.stackPng,
-                                width: 30,
-                                height: 30,
-                              ),
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            child: Image.asset(
+                              fit: BoxFit.fill,
+                              AppImages.stackPng,
+                              width: 41,
+                              height: 41,
                             ),
                           ),
                           const SizedBox(
@@ -817,36 +792,30 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                   children: [
                                     Text(
                                       "Need other services?",
-                                      style: TextStyle(
-                                          color: AppColors.appBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(color: AppColors.appBlack),
                                     ),
                                     const Icon(
                                       Icons.info_outline,
-                                      size: 14,
+                                      size: 16,
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "You can select multiple services.",
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.appBlack.withOpacity(.5)),
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 )
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, AppRoutes.profileScreen),
-                            child: Image.asset(
-                              color: AppColors.appYellow,
-                              fit: BoxFit.fill,
-                              AppImages.cautionPng,
-                              width: 25,
-                              height: 25,
-                            ),
+                          Image.asset(
+                            color: AppColors.appYellow,
+                            fit: BoxFit.fill,
+                            AppImages.cautionPng,
+                            width: 20,
+                            height: 20,
                           ),
                         ],
                       ),
@@ -855,11 +824,11 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       onTap: () => showModalBottom(),
                       child: Container(
                         width: width,
-                        height: height * .08,
+                        height: 72,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
+                            horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
                             color: AppColors.primaryBackgroundColor
                                 .withOpacity(.3),
@@ -876,24 +845,23 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                                 RichText(
                                     text: TextSpan(children: [
                                   TextSpan(
-                                      text: "Equipment Rental ",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: AppColors.appBlack
-                                              .withOpacity(.7))),
+                                    text: "Equipment Rental ",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(color: AppColors.appBlack),
+                                  ),
                                   TextSpan(
-                                      text: "NGN 200.00",
-                                      style: TextStyle(
-                                        color: AppColors.appGreen,
-                                        fontWeight: FontWeight.w500,
-                                      )),
+                                    text: "NGN 200.00",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(color: AppColors.appGreen),
+                                  ),
                                 ])),
                                 Text(
                                   'Goalkeeper gloves ( 3 )',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color:
-                                          AppColors.appBlack.withOpacity(.5)),
+                                  style: Theme.of(context).textTheme.headline6,
                                 )
                               ],
                             ),
@@ -906,28 +874,31 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => showModalBottom(),
                       child: Container(
                         width: width,
-                        height: height * .08,
+                        height: 72,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
+                            horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
                             color: AppColors.primaryBackgroundColor
                                 .withOpacity(.3),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10))),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Professional Coaching',
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               size: 20,
                             )
@@ -936,28 +907,31 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => showModalBottom(),
                       child: Container(
                         width: width,
-                        height: height * .08,
+                        height: 72,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
+                            horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
                             color: AppColors.primaryBackgroundColor
                                 .withOpacity(.3),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10))),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Refreshments/Catering',
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               size: 20,
                             )
@@ -966,28 +940,31 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => showModalBottom(),
                       child: Container(
                         width: width,
-                        height: height * .08,
+                        height: 72,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
+                            horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
                             color: AppColors.primaryBackgroundColor
                                 .withOpacity(.3),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10))),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Photography Services',
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               size: 20,
                             )
@@ -996,28 +973,31 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => showModalBottom(),
                       child: Container(
                         width: width,
-                        height: height * .08,
+                        height: 72,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
+                            horizontal: 12, vertical: 16),
                         decoration: BoxDecoration(
                             color: AppColors.primaryBackgroundColor
                                 .withOpacity(.3),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10))),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Locker Rental',
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               size: 20,
                             )
@@ -1034,7 +1014,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
             ),
             Container(
               width: width,
-              height: 200,
+              height: 180,
               decoration: BoxDecoration(
                   color: AppColors.appWhite,
                   border: Border(
@@ -1045,9 +1025,9 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: width * .03),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    height: height * .08,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    height: 63,
                     width: width,
                     decoration: BoxDecoration(
                         border: Border.all(
@@ -1061,8 +1041,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                       children: [
                         Text(
                           'Subtotal',
-                          style: TextStyle(
-                              fontSize: 15, color: AppColors.appBlack),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1070,17 +1049,19 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                           children: [
                             Text(
                               '₦1,100',
-                              style: TextStyle(
-                                  fontSize: 15, color: AppColors.appBlack),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: AppColors.appBlack),
                             ),
                             Text(
                               'View breakdown',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: AppColors.appGreen,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                      color: AppColors.appGreen,
+                                      decoration: TextDecoration.underline),
                             ),
                           ],
                         ),
@@ -1097,6 +1078,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                         SizedBox(
                           width: width * .45,
                           child: AppButton(
+                              buttonHeight: 53,
                               buttonRadius: 10,
                               borderColor: AppColors.primaryBackgroundColor
                                   .withOpacity(.3),
@@ -1107,6 +1089,7 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
                         SizedBox(
                           width: width * .45,
                           child: AppButton(
+                              buttonHeight: 53,
                               buttonRadius: 10,
                               pressedFunction: () => navigateToReview(),
                               buttonColor: AppColors.appGreen,
@@ -1129,8 +1112,8 @@ class _BookingsScreenState extends ConsumerState<BookingsScreen> {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 30,
-        height: 30,
+        width: 36,
+        height: 36,
         padding: const EdgeInsets.all(3.0),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),

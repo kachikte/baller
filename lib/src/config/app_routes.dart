@@ -32,6 +32,8 @@ class AppRoutes {
   static const bookingHomeScreen = '/booking-home-screen';
   static const bookingReviewScreen = '/booking-review-screen';
   static const paymentScreen = '/payment-screen';
+  static const favoriteScreen = '/favorite-screen';
+  static const bookingDetailScreen = '/booking-detail-screen';
   static const transactionSuccessfulScreen = '/transaction-successful-screen';
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -138,6 +140,14 @@ class AppRoutes {
       case transactionSuccessfulScreen:
         materialPageRoute = MaterialPageRoute(
             builder: (_) => const TransactionSuccessfulScreen());
+        break;
+      case favoriteScreen:
+        materialPageRoute =
+            MaterialPageRoute(builder: (_) => const FavoriteScreen());
+        break;
+      case bookingDetailScreen:
+        materialPageRoute =
+            MaterialPageRoute(builder: (_) => const BookingDetailScreen());
         break;
       case matchDetailScreen:
         materialPageRoute = MaterialPageRoute(

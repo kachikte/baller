@@ -11,7 +11,7 @@ class ExploreWidget extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
 
     return Container(
-      height: height * .22,
+      height: 164,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -25,119 +25,114 @@ class ExploreWidget extends StatelessWidget {
           EdgeInsets.symmetric(vertical: height * .02, horizontal: width * .03),
       padding:
           EdgeInsets.symmetric(vertical: height * .02, horizontal: width * .04),
-      child: Expanded(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: width * .6,
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Upcoming",
-                    style: TextStyle(
-                      color: AppColors.appWhite,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: width * .6,
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Upcoming",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(color: AppColors.appWhite),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Sport",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: AppColors.appWhite),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Sport",
-                        style: TextStyle(
-                            color: AppColors.appWhite,
+                    Text(
+                      "Reserved date",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: AppColors.appWhite),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Basketball",
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.appWhite),
+                    ),
+                    Text(
+                      "14 Feb ‘24",
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.appWhite),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Reserved time",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: AppColors.appWhite),
+                    ),
+                    Text(
+                      "Location",
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: AppColors.appWhite),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "08:30 am",
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.appWhite),
+                    ),
+                    SizedBox(
+                      width: width * .25,
+                      child: Text(
+                        "Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108",
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(
                             fontWeight: FontWeight.w700,
-                            fontSize: 14),
+                            color: AppColors.appWhite),
                       ),
-                      Text(
-                        "Reserved date",
-                        style: TextStyle(
-                            color: AppColors.appWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Basketball",
-                        style: TextStyle(
-                            color: AppColors.appWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17),
-                      ),
-                      Text(
-                        "14 Feb ‘24",
-                        style: TextStyle(
-                            color: AppColors.appWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Reserved time",
-                        style: TextStyle(
-                            color: AppColors.appWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14),
-                      ),
-                      Text(
-                        "Location",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: AppColors.appWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "08:30 am",
-                        style: TextStyle(
-                            color: AppColors.appWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17),
-                      ),
-                      SizedBox(
-                        width: width * .23,
-                        child: Text(
-                          "Citec Villa, 1, C-Close, 4th Ave, Gwarinpa, Kubwa 900108",
-                          softWrap: true,
-                          style: TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              color: AppColors.appWhite,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 17),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                    )
+                  ],
+                ),
+              ],
             ),
-            Image.asset(AppImages.ballersScan)
-          ],
-        ),
+          ),
+          Image.asset(AppImages.ballersScan)
+        ],
       ),
     );
   }

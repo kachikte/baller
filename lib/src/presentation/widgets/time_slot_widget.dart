@@ -13,10 +13,9 @@ class TimeSlotWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: width * .03),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-          height: height * .09,
-          width: width * .5,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          height: 66,
+          width: 167,
           decoration: BoxDecoration(
               border: Border.all(
                   color: AppColors.appBlack.withOpacity(.2), width: 1),
@@ -29,8 +28,8 @@ class TimeSlotWidget extends StatelessWidget {
                 AppImages.clockPng,
                 color: AppColors.appBlack,
                 fit: BoxFit.fill,
-                width: 25,
-                height: 25,
+                width: 16,
+                height: 16,
               ),
               const SizedBox(
                 width: 10,
@@ -41,18 +40,15 @@ class TimeSlotWidget extends StatelessWidget {
                 children: [
                   Text(
                     '4:00 AM - 6:00 AM',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
-                        color: AppColors.appBlack),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(fontWeight: FontWeight.w700),
                   ),
                   Text(
                     '₦500',
-                    style: TextStyle(
-                      color: AppColors.appGreen,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontWeight: FontWeight.w500, color: AppColors.appGreen),
                   ),
                 ],
               ),

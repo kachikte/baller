@@ -1,5 +1,6 @@
 export 'arena_details_screens.dart';
 export 'arena_screen.dart';
+export 'booking_detail_screen.dart';
 export 'booking_home_screen.dart';
 export 'booking_review.dart';
 export 'bookings_screen.dart';
@@ -9,6 +10,7 @@ export 'edit_password_screen.dart';
 export 'edit_pin_intro_screen.dart';
 export 'edit_profile_screen.dart';
 export 'explore_screen.dart';
+export 'favorite_screen.dart';
 export 'home_screen.dart';
 export 'landing_screen.dart';
 export 'match_detail_screen.dart';

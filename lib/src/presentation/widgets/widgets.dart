@@ -8,6 +8,7 @@ export 'app_pin_number_widget.dart';
 export 'app_util_widgets.dart';
 export 'arena_fields_widget.dart';
 export 'bookings_widget.dart';
+export 'dotted_horizontal_rule_widget.dart';
 export 'explore_widget.dart';
 export 'featured_fields_widget.dart';
 export 'fields_widget.dart';
